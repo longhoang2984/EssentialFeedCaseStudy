@@ -38,7 +38,7 @@ class RemoteFeedLoaderTests: XCTestCase {
     
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
-        expect(sut, toCompleteWithResult: .failed(.connectivity)) {
+        expect(sut, toCompleteWith: .failed(.connectivity)) {
             let clientError = NSError(domain: "Test", code: 0)
             client.completion(with: clientError)
         }
@@ -48,7 +48,7 @@ class RemoteFeedLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         let samplesStatusCode = [199, 201, 400, 404, 500, 501]
         samplesStatusCode.enumerated().forEach { index, code in
-            expect(sut, toCompleteWithResult: .failed(.invalidData)) {
+            expect(sut, toCompleteWith: .failed(.invalidData)) {
                 client.completion(withStatusCode: code, at: index)
             }
         }
@@ -56,7 +56,7 @@ class RemoteFeedLoaderTests: XCTestCase {
     
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
-        expect(sut, toCompleteWithResult: .failed(.invalidData)) {
+        expect(sut, toCompleteWith: .failed(.invalidData)) {
             let data = Data("Invalid JSON".utf8)
             client.completion(withStatusCode: 200, data: data)
         }
@@ -64,7 +64,7 @@ class RemoteFeedLoaderTests: XCTestCase {
     
     func test_load_deliversErrorOn200HTTPResponseWithEmptyListSON() {
         let (sut, client) = makeSUT()
-        expect(sut, toCompleteWithResult: .success([])) {
+        expect(sut, toCompleteWith: .success([])) {
             let data = Data("{\"items\": []}".utf8)
             client.completion(withStatusCode: 200, data: data)
         }
@@ -77,7 +77,7 @@ class RemoteFeedLoaderTests: XCTestCase {
         return (sut, client)
     }
     
-    private func expect(_ sut: RemoteFeedLoader, toCompleteWithResult result: RemoteFeedLoader.Result, action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    private func expect(_ sut: RemoteFeedLoader, toCompleteWith result: RemoteFeedLoader.Result, action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         var capturesResults = [RemoteFeedLoader.Result]()
         sut.load { capturesResults.append($0) }
         action()
