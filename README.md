@@ -1,4 +1,5 @@
 # Essential App Case Study
+[![CI](https://github.com/longhoang2984/FeedNetworkingModule/actions/workflows/swift.yml/badge.svg)](https://github.com/longhoang2984/FeedNetworkingModule/actions/workflows/swift.yml)
 
 ## Image Feed Feature Specs
 
