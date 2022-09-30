@@ -11,19 +11,7 @@ import EssentialFeed
 class EssentialFeedAPIEndToEndTests: XCTestCase {
     
     func test_endToEndTestServerGETFeedResult_matchesFixedTestAccountData() {
-        let testServerURL = URL(string: "https://essentialdeveloper.com/feed-case-study/test-api/feed")!
-        let client = URLSessionHTTPClient()
-        let loader = RemoteFeedLoader(url: testServerURL, client: client)
-        
-        var receivedResult: LoadFeedResult?
-        let exp = expectation(description: "Wait for loader completion")
-        loader.load { result in
-            receivedResult = result
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 5.0)
-        
-        switch receivedResult {
+        switch getFeedResult() {
         case .success(let items)?:
             XCTAssertEqual(items.count, 8)
             XCTAssertEqual(items[0], expectedImage(at: 0))
@@ -39,6 +27,24 @@ class EssentialFeedAPIEndToEndTests: XCTestCase {
         default:
             XCTFail("Expect receive success, got no result instead")
         }
+    }
+    
+    // MARK: Helpers
+    private func getFeedResult(file: StaticString = #filePath, line: UInt = #line) -> LoadFeedResult? {
+        let testServerURL = URL(string: "https://essentialdeveloper.com/feed-case-study/test-api/feed")!
+        let client = URLSessionHTTPClient()
+        let loader = RemoteFeedLoader(url: testServerURL, client: client)
+        trackForMemoryLeaks(client, file: file, line: line)
+        trackForMemoryLeaks(loader, file: file, line: line)
+        
+        var receivedResult: LoadFeedResult?
+        let exp = expectation(description: "Wait for loader completion")
+        loader.load { result in
+            receivedResult = result
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 5.0)
+        return receivedResult
     }
     
     private func expectedImage(at index: Int) -> FeedItem {
