@@ -104,8 +104,8 @@ class RemoteFeedLoaderTests: XCTestCase {
     private func makeSUT(url: URL = URL(string: "https://google.com")!, file: StaticString = #filePath, line: UInt = #line) -> (sut: RemoteFeedLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = RemoteFeedLoader(url: url, client: client)
-        checkForMemoryLeaks(sut)
-        checkForMemoryLeaks(client)
+        checkForMemoryLeaks(sut, file: file, line: line)
+        checkForMemoryLeaks(client, file: file, line: line)
         return (sut, client)
     }
     
@@ -115,11 +115,23 @@ class RemoteFeedLoaderTests: XCTestCase {
         }
     }
     
-    private func expect(_ sut: RemoteFeedLoader, toCompleteWith result: RemoteFeedLoader.Result, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
-        var capturesResults = [RemoteFeedLoader.Result]()
-        sut.load { capturesResults.append($0) }
+    private func expect(_ sut: RemoteFeedLoader, toCompleteWith expectedResult: RemoteFeedLoader.Result, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        
+        let expect = expectation(description: "Wait for load completion")
+        sut.load { receivedResult in
+            switch (receivedResult, expectedResult) {
+            case let (.success(receivedResult), .success(expectedResult)):
+                XCTAssertEqual(receivedResult, expectedResult, file: file, line: line)
+            case let (.failure(receivedError), .failure(expectedError)):
+                XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+            default:
+                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            }
+            expect.fulfill()
+        }
         action()
-        XCTAssertEqual(capturesResults, [result], file: file, line: line)
+        wait(for: [expect], timeout: 1.0)
+       
     }
     
     private func makeItems(id: UUID, description: String? = nil,
