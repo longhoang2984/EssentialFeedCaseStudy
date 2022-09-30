@@ -19,6 +19,8 @@ protocol HTTPSessionDataTask {
 class URLSessionHTTPClient {
     let session: URLSession
     
+    struct UnexpectedValuesRepresentation: Error { }
+    
     init(_ session: URLSession = .shared) {
         self.session = session
     }
@@ -27,6 +29,8 @@ class URLSessionHTTPClient {
         session.dataTask(with: url) { _, _, error in
             if let error = error {
                 completion(.failure(error))
+            } else {
+                completion(.failure(UnexpectedValuesRepresentation()))
             }
         }.resume()
     }
@@ -62,7 +66,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         
         let url = anyURL()
         let error = NSError(domain: "error", code: 1)
-        URLProtocolStub.stub(url: url, data: nil, response: nil, error: error)
+        URLProtocolStub.stub(data: nil, response: nil, error: error)
         
         let exp = expectation(description: "Wait for completion")
         makeSUT().get(from: url) { result in
@@ -72,6 +76,24 @@ class URLSessionHTTPClientTests: XCTestCase {
                 XCTAssertEqual(err.code, error.code)
             default:
                 XCTFail("Expected receive failure with error \(error) but received \(result) instead")
+            }
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func test_getFromURLSession_failedOnAllNilValues() {
+        
+        let url = anyURL()
+        URLProtocolStub.stub(data: nil, response: nil, error: nil)
+        
+        let exp = expectation(description: "Wait for completion")
+        makeSUT().get(from: url) { result in
+            switch result {
+            case .failure:
+                break
+            default:
+                XCTFail("Expected receive failure, received \(result) instead")
             }
             exp.fulfill()
         }
@@ -98,8 +120,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         
         private static var stub: Stub?
         private static var requestObserver: ((URLRequest) -> Void)?
-        static func stub(url: URL,
-            data: Data?,
+        static func stub(data: Data?,
             response: URLResponse?,
             error: Error? = nil) {
             URLProtocolStub.stub = Stub(data: data,
@@ -118,6 +139,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         static func stopInterceptingRequest() {
             URLProtocol.unregisterClass(URLProtocolStub.self)
             URLProtocolStub.stub = nil
+            requestObserver = nil
         }
         
         override class func canInit(with request: URLRequest) -> Bool {
