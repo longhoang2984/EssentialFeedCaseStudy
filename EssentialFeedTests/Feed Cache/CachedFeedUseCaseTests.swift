@@ -38,12 +38,12 @@ final class CachedFeedUseCaseTests: XCTestCase {
     
     func test_save_requestNewItemsCacheInsertionWithTimestampOnSuccessfullDeletion() {
         let timestamp = Date()
-        let items = [uniqueItem(), uniqueItem()]
+        let items = uniqueItems()
         let (sut, store) = makeSUT(currentDate: { timestamp })
-        sut.save(items) { _ in }
+        sut.save(items.models) { _ in }
         store.completionWithSuccessfulDeletion()
         
-        XCTAssertEqual(store.receivedMessages, [.deleteCachedFeed, .inert(items, timestamp)])
+        XCTAssertEqual(store.receivedMessages, [.deleteCachedFeed, .inert(items.local, timestamp)])
     }
     
     func test_save_failsOnDeletionError() {
@@ -123,6 +123,11 @@ final class CachedFeedUseCaseTests: XCTestCase {
         return FeedItem(id: UUID(), description: "desc", location: "location", imageURL: anyURL())
     }
     
+    func uniqueItems() -> (models: [FeedItem], local: [LocalFeedItem]) {
+        let items = [uniqueItem(), uniqueItem()]
+        return (items, items.toLocalFeedItems())
+    }
+    
     func anyURL() -> URL {
         return URL(string: "https://url.com")!
     }
@@ -134,7 +139,7 @@ final class CachedFeedUseCaseTests: XCTestCase {
     class FeedStoreSpy: FeedStore {
         enum ReceivedMessage: Equatable {
             case deleteCachedFeed
-            case inert([FeedItem], Date)
+            case inert([LocalFeedItem], Date)
         }
         
         private(set) var receivedMessages: [ReceivedMessage] = []
@@ -157,7 +162,7 @@ final class CachedFeedUseCaseTests: XCTestCase {
             deletionCompletions[index](nil)
         }
         
-        func insert(_ items: [FeedItem], timestamp: Date, completion: @escaping InsertionCompletion) {
+        func insert(_ items: [LocalFeedItem], timestamp: Date, completion: @escaping InsertionCompletion) {
             insertionCompletions.append(completion)
             receivedMessages.append(.inert(items, timestamp))
         }
@@ -166,5 +171,4 @@ final class CachedFeedUseCaseTests: XCTestCase {
             insertionCompletions[index](nil)
         }
     }
-
 }
