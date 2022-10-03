@@ -56,6 +56,9 @@ final class CachedFeedUseCaseTests: XCTestCase {
         let deletionError = anyNSError()
         store.completionWithError(deletionError)
         sut.save(items)
+        
+        XCTAssertEqual(store.insertCallCount, 0)
+    }
     }
     
     // MARK: - Helpers
