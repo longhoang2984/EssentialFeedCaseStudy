@@ -125,7 +125,8 @@ final class CachedFeedUseCaseTests: XCTestCase {
     
     func uniqueItems() -> (models: [FeedItem], local: [LocalFeedItem]) {
         let items = [uniqueItem(), uniqueItem()]
-        return (items, items.toLocalFeedItems())
+        let local = items.map({ return LocalFeedItem(id: $0.id, description: $0.description, location: $0.location, imageURL: $0.imageURL) })
+        return (items, local)
     }
     
     func anyURL() -> URL {
