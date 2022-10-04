@@ -54,4 +54,8 @@ class FeedStoreSpy: FeedStore {
     func completionWithRetrievalError(_ error: Error, at index: Int = 0) {
         retrievalCompletions[index](error)
     }
+    
+    func completionWithSuccessfulRetrieval(at index: Int = 0) {
+        retrievalCompletions[index](nil)
+    }
 }
