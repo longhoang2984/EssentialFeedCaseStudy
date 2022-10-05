@@ -14,7 +14,10 @@ func uniqueFeed() -> FeedImage {
 
 func uniqueFeeds() -> (models: [FeedImage], local: [LocalFeedImage]) {
     let items = [uniqueFeed(), uniqueFeed()]
-    let local = items.map({ return LocalFeedImage(id: $0.id, description: $0.description, location: $0.location, imageURL: $0.imageURL) })
+    let local = items.map({ return LocalFeedImage(id: $0.id,
+                                                  description: $0.description,
+                                                  location: $0.location,
+                                                  url: $0.imageURL) })
     return (items, local)
 }
 
