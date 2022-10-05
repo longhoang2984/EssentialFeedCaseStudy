@@ -24,14 +24,16 @@ extension Date {
         return 7
     }
     
-    func minusFeedCacheMaxAge() -> Date {
+    private func minusFeedCacheMaxAge() -> Date {
         return add(days: -feedCacheMaxAgeInDays)
     }
     
     private func add(days: Int) -> Date {
         return Calendar(identifier: .gregorian).date(byAdding: .day, value: days, to: self)!
     }
-    
+}
+
+extension Date {
     func add(seconds: TimeInterval) -> Date {
         return self + seconds
     }
