@@ -20,6 +20,10 @@ func uniqueFeeds() -> (models: [FeedImage], local: [LocalFeedImage]) {
 
 
 extension Date {
+    func minusFeedCacheMaxAge() -> Date {
+        return add(days: -7)
+    }
+    
     func add(days: Int) -> Date {
         return Calendar(identifier: .gregorian).date(byAdding: .day, value: days, to: self)!
     }
