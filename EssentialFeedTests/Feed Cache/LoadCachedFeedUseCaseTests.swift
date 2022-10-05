@@ -105,7 +105,7 @@ final class LoadCachedFeedUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
-    func test_load_deleteCachedSevenDaysOldCached() {
+    func test_load_hasNoSideEffectsOnSevenDaysOldCached() {
         let feed = uniqueFeeds()
         let fixedCurrentDate = Date()
         let sevenDaysOldTimestamp = fixedCurrentDate.add(days: -7)
@@ -114,10 +114,10 @@ final class LoadCachedFeedUseCaseTests: XCTestCase {
         sut.load { _ in }
         store.completionRetrieval(with: feed.local, timestamp: sevenDaysOldTimestamp)
         
-        XCTAssertEqual(store.receivedMessages, [.retrieve, .deleteCachedFeed])
+        XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
-    func test_load_deleteCachedMoreThanSevenDaysOldCached() {
+    func test_load_hasNoSideEffectsOnMoreThanSevenDaysOldCached() {
         let feed = uniqueFeeds()
         let fixedCurrentDate = Date()
         let moreThanSevenDaysOldTimestamp = fixedCurrentDate.add(days: -7).add(seconds: -1)
@@ -126,7 +126,7 @@ final class LoadCachedFeedUseCaseTests: XCTestCase {
         sut.load { _ in }
         store.completionRetrieval(with: feed.local, timestamp: moreThanSevenDaysOldTimestamp)
         
-        XCTAssertEqual(store.receivedMessages, [.retrieve, .deleteCachedFeed])
+        XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
     // MARK: - Helpers
