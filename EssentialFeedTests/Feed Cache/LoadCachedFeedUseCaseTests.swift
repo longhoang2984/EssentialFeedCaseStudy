@@ -83,7 +83,7 @@ final class LoadCachedFeedUseCaseTests: XCTestCase {
         
     }
     
-    func test_load_doesNotDeleteCachedOnRetrieveError() {
+    func test_load_hasNoSideEffectsOnEmptyCache() {
         
         let (sut, store) = makeSUT()
         
