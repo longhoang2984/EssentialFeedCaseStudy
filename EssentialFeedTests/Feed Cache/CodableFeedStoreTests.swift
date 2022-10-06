@@ -114,8 +114,7 @@ final class CodableFeedStoreTests: XCTestCase {
         sut.insert(feed.local, timestamp: timestamp) { insertError in
             XCTAssertNil(insertError)
             
-            self.expect(sut, toRetrieve: .found(feed: feed.local, timestamp: timestamp))
-            self.expect(sut, toRetrieve: .found(feed: feed.local, timestamp: timestamp))
+            self.expect(sut, toRetrieveTwice: .found(feed: feed.local, timestamp: timestamp))
             exp.fulfill()
             
         }
@@ -145,6 +144,11 @@ final class CodableFeedStoreTests: XCTestCase {
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1.0)
+    }
+    
+    private func expect(_ sut: CodableFeedStore, toRetrieveTwice expectedResult: RetrieveCachedFeedResult, file: StaticString = #filePath, line: UInt = #line) {
+        expect(sut, toRetrieve: expectedResult)
+        expect(sut, toRetrieve: expectedResult)
     }
     
     private func testSpecificStoreURL() -> URL {
