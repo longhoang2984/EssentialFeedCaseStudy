@@ -96,13 +96,8 @@ final class CodableFeedStoreTests: XCTestCase {
         let feed = uniqueFeeds()
         let timestamp = Date()
         
-        let exp = expectation(description: "Wait for cache retrieval")
-        sut.insert(feed.local, timestamp: timestamp) { insertError in
-            XCTAssertNil(insertError)
-            self.expect(sut, toRetrieve: .found(feed: feed.local, timestamp: timestamp))
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
+        insert((feed.local, timestamp), to: sut)
+        expect(sut, toRetrieve: .found(feed: feed.local, timestamp: timestamp))
     }
     
     func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {
@@ -110,15 +105,8 @@ final class CodableFeedStoreTests: XCTestCase {
         let feed = uniqueFeeds()
         let timestamp = Date()
         
-        let exp = expectation(description: "Wait for cache retrieval")
-        sut.insert(feed.local, timestamp: timestamp) { insertError in
-            XCTAssertNil(insertError)
-            
-            self.expect(sut, toRetrieveTwice: .found(feed: feed.local, timestamp: timestamp))
-            exp.fulfill()
-            
-        }
-        wait(for: [exp], timeout: 1.0)
+        insert((feed.local, timestamp), to: sut)
+        expect(sut, toRetrieveTwice: .found(feed: feed.local, timestamp: timestamp))
     }
     
     // MARK: - Helpers
@@ -149,6 +137,15 @@ final class CodableFeedStoreTests: XCTestCase {
     private func expect(_ sut: CodableFeedStore, toRetrieveTwice expectedResult: RetrieveCachedFeedResult, file: StaticString = #filePath, line: UInt = #line) {
         expect(sut, toRetrieve: expectedResult)
         expect(sut, toRetrieve: expectedResult)
+    }
+    
+    private func insert(_ cache: (feed: [LocalFeedImage], timestamp: Date), to sut: CodableFeedStore, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "Wait for cache insertion")
+        sut.insert(cache.feed, timestamp: cache.timestamp) { insertError in
+            XCTAssertNil(insertError, "Expected feed to be inserted successfully")
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
     }
     
     private func testSpecificStoreURL() -> URL {
