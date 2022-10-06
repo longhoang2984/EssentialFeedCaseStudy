@@ -43,8 +43,7 @@ public class CodableFeedStore: FeedStore {
     public init(storeURL: URL) {
         self.storeURL = storeURL
     }
-    private let queue = DispatchQueue(label: "\(CodableFeedStore.self)Queue", qos: .userInitiated, attributes: .concurrent
-    )
+    private let queue = DispatchQueue(label: "\(CodableFeedStore.self)Queue", qos: .userInitiated, attributes: .concurrent)
     
     public func retrieve(completion: @escaping RetrievalCompletion) {
         let storeURL = self.storeURL
