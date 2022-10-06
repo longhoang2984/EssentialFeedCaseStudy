@@ -77,13 +77,13 @@ final class CodableFeedStoreTests: XCTestCase {
         undoStoreArtifacts()
     }
     
-    func test_retrieveEmptyResultOnEmptyCached() {
+    func test_retrieve_deliverEmptyOnEmptyCache() {
         let sut = makeSUT()
         
         expect(sut, toRetrieve: .empty)
     }
     
-    func test_retrieveTwiceGetTheSameEmptyResult() {
+    func test_retrieve_hasNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
         
         expect(sut, toRetrieve: .empty)
@@ -91,7 +91,7 @@ final class CodableFeedStoreTests: XCTestCase {
         
     }
     
-    func test_retrieveAfterInsertingToEmptyCache_deliversInsertedValues() {
+    func test_retrieve_deliversFoundValuesOnNonEmptyCache() {
         let sut = makeSUT()
         let feed = uniqueFeeds()
         let timestamp = Date()
