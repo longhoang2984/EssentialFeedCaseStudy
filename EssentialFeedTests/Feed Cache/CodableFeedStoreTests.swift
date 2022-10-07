@@ -130,7 +130,7 @@ final class CodableFeedStoreTests: XCTestCase {
         expect(sut, toRetrieveTwice: .found(feed: feed.local, timestamp: timestamp))
     }
     
-    func test_retrieve_deliversFailureOnInvalidData() {
+    func test_retrieve_deliversFailureOnRetrievalError() {
         let storeURL = testSpecificStoreURL()
         let sut = makeSUT(storeURL: storeURL)
         
@@ -162,7 +162,7 @@ final class CodableFeedStoreTests: XCTestCase {
         expect(sut, toRetrieve: .found(feed: latestFeed, timestamp: latestTimestamp))
     }
     
-    func test_insert_deliversFailureOnInvalidURL() {
+    func test_insert_deliversFailureOnInsertionError() {
         let storeURL = URL(string: "invalid://invalid-url")!
         let sut = makeSUT(storeURL: storeURL)
         let feed = uniqueFeeds()
@@ -170,6 +170,15 @@ final class CodableFeedStoreTests: XCTestCase {
         
         let insertionError = insert((feed.local, timestamp), to: sut)
         XCTAssertNotNil(insertionError, "Expected to insert cache failure with an error")
+    }
+    
+    func test_insert_hasNoSideEffectsOnFailure() {
+        let storeURL = URL(string: "invalid://invalid-url")!
+        let sut = makeSUT(storeURL: storeURL)
+        let feed = uniqueFeeds()
+        let timestamp = Date()
+        
+        insert((feed.local, timestamp), to: sut)
         expect(sut, toRetrieve: .empty)
     }
     
@@ -200,6 +209,13 @@ final class CodableFeedStoreTests: XCTestCase {
 
         let error = delete(sut)
         XCTAssertNotNil(error, "Expected cache deletion to failed")
+    }
+    
+    func test_delete_hasNoSideEffectsOnFailure() {
+        let noPermissionURL = cachesDirectory()
+        let sut = makeSUT(storeURL: noPermissionURL)
+
+        delete(sut)
         expect(sut, toRetrieve: .empty)
     }
     
@@ -272,6 +288,7 @@ final class CodableFeedStoreTests: XCTestCase {
         return receivedError
     }
     
+    @discardableResult
     private func delete(_ sut: FeedStore,  file: StaticString = #filePath, line: UInt = #line) -> Error? {
         let exp = expectation(description: "Wait for cache deletion")
         var deletionError: Error?
