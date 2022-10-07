@@ -8,83 +8,8 @@
 import XCTest
 import EssentialFeed
 
-private class CodableFeedStore: FeedStore {
-    
-    private struct Cache: Codable {
-        let feed: [CodableFeedImage]
-        let timestamp: Date
-        
-        var localFeed: [LocalFeedImage] {
-            return feed.map { $0.local }
-        }
-    }
-    
-    private struct CodableFeedImage: Codable {
-        let id: UUID
-        let description: String?
-        let location: String?
-        let url: URL
-        
-        init(_ image: LocalFeedImage) {
-            id = image.id
-            description = image.description
-            location = image.location
-            url = image.url
-        }
-        
-        var local: LocalFeedImage {
-            return LocalFeedImage(id: id,
-                           description: description,
-                           location: location,
-                           url: url)
-        }
-    }
-    
-    let storeURL: URL
-    init(storeURL: URL) {
-        self.storeURL = storeURL
-    }
-    
-    func retrieve(completion: @escaping RetrievalCompletion) {
-        guard let data = try? Data(contentsOf: storeURL) else {
-            return completion(.empty)
-        }
-        
-        do {
-            let decoder = JSONDecoder()
-            let decoded = try decoder.decode(Cache.self, from: data)
-            completion(.found(feed: decoded.localFeed, timestamp: decoded.timestamp))
-        } catch {
-            completion(.failure(error))
-        }
-    }
-    
-    func insert(_ feeds: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
-        do {
-            let encoder = JSONEncoder()
-            let encoded = try encoder.encode(Cache(feed: feeds.map(CodableFeedImage.init), timestamp: timestamp))
-            try encoded.write(to: storeURL)
-            completion(nil)
-        } catch {
-            completion(error)
-        }
-    }
-    
-    func deleteCachedFeed(completion: @escaping DeletionCompletion) {
-        guard FileManager.default.fileExists(atPath: storeURL.path) else {
-            return completion(nil)
-        }
-        
-        do {
-            try FileManager.default.removeItem(at: storeURL)
-            completion(nil)
-        } catch {
-            completion(error)
-        }
-    }
-}
-
-final class CodableFeedStoreTests: XCTestCase {
+typealias FailableFeedStoreSpects = FailableDeleteFeedStoreSpecs & FailableInsertFeedStoreSpecs & FailableRetrieveFeedStoreSpecs
+final class CodableFeedStoreTests: XCTestCase, FailableFeedStoreSpects {
     
     override func setUp() {
         super.setUp()
@@ -296,7 +221,7 @@ final class CodableFeedStoreTests: XCTestCase {
             deletionError = error
             exp.fulfill()
         }
-        wait(for: [exp], timeout: 1.0)
+        wait(for: [exp], timeout: 3.0)
         return deletionError
     }
     
