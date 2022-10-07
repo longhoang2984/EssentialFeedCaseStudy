@@ -41,6 +41,7 @@
 		2F43DB0B28E357EF00578E22 /* RemoteFeedLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F43DB0A28E357EF00578E22 /* RemoteFeedLoaderTests.swift */; };
 		2F43DB0E28E362DE00578E22 /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F43DB0D28E362DE00578E22 /* RemoteFeedLoader.swift */; };
 		2FFAAFBD28F070840015A774 /* CoreDataFeedStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAAFBC28F070840015A774 /* CoreDataFeedStoreTests.swift */; };
+		2FFAAFBF28F071190015A774 /* CoreDataFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAAFBE28F071190015A774 /* CoreDataFeedStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		2F43DB0A28E357EF00578E22 /* RemoteFeedLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoaderTests.swift; sourceTree = "<group>"; };
 		2F43DB0D28E362DE00578E22 /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
 		2FFAAFBC28F070840015A774 /* CoreDataFeedStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedStoreTests.swift; sourceTree = "<group>"; };
+		2FFAAFBE28F071190015A774 /* CoreDataFeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				2F2705FB28EB3DBE00C4571E /* LocalFeedImage.swift */,
 				2F29959C28EDE6A200FE13D4 /* FeedCachePolicy.swift */,
 				2F2F18C828EF438200EC0893 /* CodableFeedStore.swift */,
+				2FFAAFBE28F071190015A774 /* CoreDataFeedStore.swift */,
 			);
 			path = "Feed Cache";
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				2F2914D928E60FFA0004FCC2 /* HTTPClient.swift in Sources */,
 				2F2705FC28EB3DBE00C4571E /* LocalFeedImage.swift in Sources */,
 				2F43DB0928E3578B00578E22 /* FeedLoader.swift in Sources */,
+				2FFAAFBF28F071190015A774 /* CoreDataFeedStore.swift in Sources */,
 				2F2914DB28E6101D0004FCC2 /* FeedImagesMapper.swift in Sources */,
 				2F43DB0728E356E400578E22 /* FeedImage.swift in Sources */,
 				2F2F18C928EF438200EC0893 /* CodableFeedStore.swift in Sources */,
