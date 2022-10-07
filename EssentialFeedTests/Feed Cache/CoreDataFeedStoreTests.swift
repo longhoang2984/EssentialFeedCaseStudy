@@ -8,7 +8,7 @@
 import XCTest
 import EssentialFeed
 
-final class CoreDataFeedStoreTests: XCTestCase, FailableFeedStoreSpecs {
+final class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecs {
     
     func test_retrieve_deliverEmptyOnEmptyCache() {
         let sut = makeSUT()
@@ -34,14 +34,6 @@ final class CoreDataFeedStoreTests: XCTestCase, FailableFeedStoreSpecs {
         assertThatRetrieveHasNoSideEffectsOnNonEmptyCache(on: sut)
     }
     
-    func test_retrieve_deliversFailureOnRetrievalError() {
-        
-    }
-    
-    func test_retrieve_hasNoSideEffectsOnFailure() {
-        
-    }
-    
     func test_insert_deliversNoErrorOnEmptyCache() {
         let sut = makeSUT()
         
@@ -54,32 +46,16 @@ final class CoreDataFeedStoreTests: XCTestCase, FailableFeedStoreSpecs {
         assertThatInsertOverridesPreviouslyInsertedCacheValues(on: sut)
     }
     
-    func test_insert_deliversFailureOnInsertionError() {
-        
-    }
-    
-    func test_insert_hasNoSideEffectsOnFailure() {
-        
-    }
-    
     func test_delete_hasNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
         
-        assertThatDeleteHasNoSideEffectsOnFailure(on: sut)
+        assertThatDeleteDeliversNoErrorOnEmptyCache(on: sut)
     }
     
     func test_delete_deliversEmptyOnNonEmptyCache() {
         let sut = makeSUT()
         
         assertThatDeleteEmptiesPreviouslyInsertedCache(on: sut)
-    }
-    
-    func test_delete_deliversErrorOnDeletionError() {
-        
-    }
-    
-    func test_delete_hasNoSideEffectsOnFailure() {
-        
     }
     
     func test_storeSideEffects_runSerrially() {
