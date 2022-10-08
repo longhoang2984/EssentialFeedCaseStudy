@@ -100,7 +100,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         let result = resultFor(data: data, response: response, error: error)
         var receivedError: Error?
         switch result {
-        case .failed(let err):
+        case .failure(let err):
             receivedError = err
         default:
             XCTFail("Expected receive failure, received \(result) instead")
@@ -112,7 +112,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         let result = resultFor(data: data, response: response, error: error)
         var receivedValues: (data: Data, response: HTTPURLResponse)?
         switch result {
-        case let .success(data, response):
+        case let .success((data, response)):
             receivedValues = (data, response)
         default:
             XCTFail("Expected receive failure, received \(result) instead")
@@ -120,10 +120,10 @@ class URLSessionHTTPClientTests: XCTestCase {
         return receivedValues
     }
     
-    private func resultFor(data: Data?, response: URLResponse?, error: Error?) -> HTTPClientResult {
+    private func resultFor(data: Data?, response: URLResponse?, error: Error?) -> HTTPClient.Result {
         URLProtocolStub.stub(data: data , response: response, error: error)
         
-        var receivedResult: HTTPClientResult!
+        var receivedResult: HTTPClient.Result!
         let exp = expectation(description: "Wait for completion")
         makeSUT().get(from: anyURL()) { result in
            receivedResult = result
