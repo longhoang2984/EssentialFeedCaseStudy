@@ -33,7 +33,6 @@
 		2F2D797F28F0086D00826476 /* XCTestCase+FailableDeleteFeedStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D797E28F0086D00826476 /* XCTestCase+FailableDeleteFeedStoreSpecs.swift */; };
 		2F3931FF28F1A491005A651E /* EssentialFeediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3931F728F1A490005A651E /* EssentialFeediOS.framework */; };
 		2F39320D28F2A01F005A651E /* FeedViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F39320C28F2A01F005A651E /* FeedViewControllerTests.swift */; };
-		2F39321428F2A6CE005A651E /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F43DAEB28E354EA00578E22 /* EssentialFeed.framework */; platformFilter = ios; };
 		2F39321528F2DB8E005A651E /* XCTestCase+TrackingMemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F29A8E828E75094001D9E5A /* XCTestCase+TrackingMemoryLeak.swift */; };
 		2F39321728F2E454005A651E /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F39321628F2E454005A651E /* FeedViewController.swift */; };
 		2F43DAF028E354EA00578E22 /* EssentialFeed.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2F43DAEF28E354EA00578E22 /* EssentialFeed.docc */; };
@@ -146,7 +145,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F39321428F2A6CE005A651E /* EssentialFeed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1030,8 +1028,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1064,8 +1062,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
