@@ -33,6 +33,7 @@
 		2F2D797F28F0086D00826476 /* XCTestCase+FailableDeleteFeedStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D797E28F0086D00826476 /* XCTestCase+FailableDeleteFeedStoreSpecs.swift */; };
 		2F3931FF28F1A491005A651E /* EssentialFeediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3931F728F1A490005A651E /* EssentialFeediOS.framework */; };
 		2F39320D28F2A01F005A651E /* FeedViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F39320C28F2A01F005A651E /* FeedViewControllerTests.swift */; };
+		2F39321428F2A6CE005A651E /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F43DAEB28E354EA00578E22 /* EssentialFeed.framework */; platformFilter = ios; };
 		2F43DAF028E354EA00578E22 /* EssentialFeed.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2F43DAEF28E354EA00578E22 /* EssentialFeed.docc */; };
 		2F43DAF628E354EB00578E22 /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F43DAEB28E354EA00578E22 /* EssentialFeed.framework */; };
 		2F43DAFC28E354EB00578E22 /* EssentialFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F43DAEE28E354EA00578E22 /* EssentialFeed.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -142,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F39321428F2A6CE005A651E /* EssentialFeed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +268,13 @@
 			path = EssentialFeediOSTests;
 			sourceTree = "<group>";
 		};
+		2F39320E28F2A682005A651E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2F43DAE128E354EA00578E22 = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +285,7 @@
 				2F3931F828F1A491005A651E /* EssentialFeediOS */,
 				2F39320228F1A491005A651E /* EssentialFeediOSTests */,
 				2F43DAEC28E354EA00578E22 /* Products */,
+				2F39320E28F2A682005A651E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
