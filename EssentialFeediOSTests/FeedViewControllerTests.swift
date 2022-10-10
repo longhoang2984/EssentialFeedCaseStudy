@@ -93,6 +93,22 @@ final class FeedViewControllerTests: XCTestCase {
         sut.simulateFeedImageViewVisible(at: 1)
         XCTAssertEqual(loader.loadedImageURLs, [image0.imageURL, image1.imageURL], "Expected second image URL request once first view becomes visible")
     }
+    
+    func test_feedImageView_cancelsImageURLWhenNotVisibleAnymore() {
+        let image0 = makeImage(url: URL(string: "https://any-url.com")!)
+        let image1 = makeImage(url: URL(string: "https://any-url-1.com")!)
+        
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        loader.completionLoading(with: [image0, image1])
+        XCTAssertEqual(loader.cancelledImageURLs, [], "Expected no cancelled image URL requests until image is not visible")
+        
+        sut.simulateFeedImageViewNotVisible(at: 0)
+        XCTAssertEqual(loader.cancelledImageURLs, [image0.imageURL], "Expected one cancelled image URL request once first image is not visible anymore")
+        
+        sut.simulateFeedImageViewNotVisible(at: 1)
+        XCTAssertEqual(loader.cancelledImageURLs, [image0.imageURL, image1.imageURL], "Expected two cancelled image URL requests once second image is also not visible anymore")
+    }
  
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: FeedViewController, loader: LoaderSpy) {
@@ -157,9 +173,14 @@ final class FeedViewControllerTests: XCTestCase {
         // MARK: - FeedImageDataLoader
         
         private(set) var loadedImageURLs: [URL] = []
+        private(set) var cancelledImageURLs: [URL] = []
         
         func loadImageData(from url: URL) {
             loadedImageURLs.append(url)
+        }
+        
+        func cancelImageDataLoad(from url: URL) {
+            cancelledImageURLs.append(url)
         }
     }
 }
@@ -169,8 +190,17 @@ private extension FeedViewController {
         refreshControl?.simulatePullToRefresh()
     }
     
-    func simulateFeedImageViewVisible(at index: Int) {
-        _ = feedImageView(at: index)
+    @discardableResult
+    func simulateFeedImageViewVisible(at index: Int) -> FeedImageCell? {
+        return feedImageView(at: index) as? FeedImageCell
+    }
+    
+    func simulateFeedImageViewNotVisible(at index: Int) {
+        let view = feedImageView(at: index)
+        
+        let delegate = tableView.delegate
+        let indexPath = IndexPath(row: index, section: feedImagesSection)
+        delegate?.tableView?(tableView, didEndDisplaying: view!, forRowAt: indexPath)
     }
     
     func isShowingLoadingIndicator() -> Bool {
