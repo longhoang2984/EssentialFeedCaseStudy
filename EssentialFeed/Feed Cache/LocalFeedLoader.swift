@@ -85,7 +85,7 @@ private extension Array where Element == FeedImage {
         return map({ return LocalFeedImage(id: $0.id, description:
                                             $0.description,
                                           location: $0.location,
-                                          url: $0.imageURL) })
+                                          url: $0.url) })
     }
     
 }
