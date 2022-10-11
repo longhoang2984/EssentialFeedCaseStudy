@@ -5,19 +5,20 @@
 //  Created by Cửu Long Hoàng on 12/10/2022.
 //
 
-import UIKit
 import EssentialFeed
 
-final class FeedImageViewModel {
+final class FeedImageViewModel<Image> {
     typealias Observer<T> = (T) -> Void
     
     private var model: FeedImage
     private var imageLoader: FeedImageDataLoader
     private var task: FeedImageDataLoaderTask?
+    private var imageTransformer: (Data) -> Image?
     
-    init(model: FeedImage, imageLoader: FeedImageDataLoader) {
+    init(model: FeedImage, imageLoader: FeedImageDataLoader, imageTransformer: @escaping (Data) -> Image?) {
         self.model = model
         self.imageLoader = imageLoader
+        self.imageTransformer = imageTransformer
     }
     
     var description: String? {
@@ -32,7 +33,7 @@ final class FeedImageViewModel {
         return model.location != nil
     }
     
-    var onImageLoad: Observer<UIImage>?
+    var onImageLoad: Observer<Image>?
     var onImageLoadingStateChange: Observer<Bool>?
     var onShouldRetryImageLoadingStateChanged: Observer<Bool>?
     
@@ -45,7 +46,7 @@ final class FeedImageViewModel {
     }
     
     private func handle(result: FeedImageDataLoader.Result) {
-        if let image = (try? result.get()).flatMap(UIImage.init) {
+        if let image = (try? result.get()).flatMap(imageTransformer) {
             onImageLoad?(image)
         } else {
             onShouldRetryImageLoadingStateChanged?(true)
