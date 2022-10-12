@@ -1,5 +1,5 @@
 //
-//  FeedRefreshPresenter.swift
+//  FeedPresenter.swift
 //  EssentialFeediOS
 //
 //  Created by Cửu Long Hoàng on 12/10/2022.
@@ -24,22 +24,19 @@ protocol FeedView {
 }
 
 final class FeedPresenter {
-    typealias Observer<T> = (T) -> Void
-    
-    private let feedLoader: FeedLoader
-    init(feedLoader: FeedLoader) {
-        self.feedLoader = feedLoader
-    }
-    
     var loadingView: FeedLoadingView?
     var feedView: FeedView?
-    func loadFeed() {
+    
+    func didStartLoading() {
         loadingView?.display(FeedLoadingViewModel(isLoading: true))
-        feedLoader.load { [weak self] result in
-            if let feed = (try? result.get()) {
-                self?.feedView?.display(FeedViewModel(feed: feed))
-            }
-            self?.loadingView?.display(FeedLoadingViewModel(isLoading: false))
-        }
+    }
+    
+    func didFinishLoading(with feed: [FeedImage]) {
+        feedView?.display(FeedViewModel(feed: feed))
+        loadingView?.display(FeedLoadingViewModel(isLoading: false))
+    }
+    
+    func didFinishLoading(with error: Error) {
+        loadingView?.display(FeedLoadingViewModel(isLoading: false))
     }
 }
