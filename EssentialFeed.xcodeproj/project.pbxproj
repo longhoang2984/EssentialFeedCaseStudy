@@ -53,6 +53,7 @@
 		2F43DB0E28E362DE00578E22 /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F43DB0D28E362DE00578E22 /* RemoteFeedLoader.swift */; };
 		2FC508B728F45F8100F99754 /* FeedImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC508B628F45F8100F99754 /* FeedImageCell.swift */; };
 		2FC508B928F4790500F99754 /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC508B828F4790500F99754 /* UIView+Shimmering.swift */; };
+		2FE3A32229055C3600F33BE1 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FE3A32129055C3600F33BE1 /* Feed.storyboard */; };
 		2FFAAFBD28F070840015A774 /* CoreDataFeedStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAAFBC28F070840015A774 /* CoreDataFeedStoreTests.swift */; };
 		2FFAAFBF28F071190015A774 /* CoreDataFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAAFBE28F071190015A774 /* CoreDataFeedStore.swift */; };
 		2FFAAFC228F072560015A774 /* FeedStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAAFC028F072560015A774 /* FeedStore.xcdatamodeld */; };
@@ -163,6 +164,7 @@
 		2F43DB0D28E362DE00578E22 /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
 		2FC508B628F45F8100F99754 /* FeedImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageCell.swift; sourceTree = "<group>"; };
 		2FC508B828F4790500F99754 /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
+		2FE3A32129055C3600F33BE1 /* Feed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		2FFAAFBC28F070840015A774 /* CoreDataFeedStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedStoreTests.swift; sourceTree = "<group>"; };
 		2FFAAFBE28F071190015A774 /* CoreDataFeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedStore.swift; sourceTree = "<group>"; };
 		2FFAAFC128F072560015A774 /* FeedStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FeedStore.xcdatamodel; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 			children = (
 				2FC508B628F45F8100F99754 /* FeedImageCell.swift */,
 				2FC508B828F4790500F99754 /* UIView+Shimmering.swift */,
+				2FE3A32129055C3600F33BE1 /* Feed.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FE3A32229055C3600F33BE1 /* Feed.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
