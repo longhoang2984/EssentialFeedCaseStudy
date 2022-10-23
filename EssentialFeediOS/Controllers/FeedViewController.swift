@@ -8,7 +8,7 @@
 import UIKit
 
 public final class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching {
-    var feedRefresh: FeedRefreshViewController?
+    @IBOutlet var feedRefresh: FeedRefreshViewController?
     private var tasks = [IndexPath: FeedImageDataLoaderTask]()
     private var cellControllers = [IndexPath: FeedImageCellController]()
     var tableModel = [FeedImageCellController]() {
