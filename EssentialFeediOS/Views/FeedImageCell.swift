@@ -8,19 +8,16 @@
 import UIKit
 
 public final class FeedImageCell: UITableViewCell {
-    public let locationContainer: UIView = UIView()
-    public let locationLabel: UILabel = UILabel()
-    public let descriptionLabel: UILabel = UILabel()
-    public let feedImageContainer = UIView()
-    public let feedImageView = UIImageView()
-    public var onRetry: (() -> Void)?
-    private(set) public lazy var feedImageRetryButton: UIButton = {
-        let bt = UIButton()
-        bt.addTarget(self, action: #selector(retry), for: .touchUpInside)
-        return bt
-    }()
+    @IBOutlet public var locationContainer: UIView!
+    @IBOutlet public var locationLabel: UILabel!
+    @IBOutlet public var descriptionLabel: UILabel!
+    @IBOutlet public var feedImageContainer: UIView!
+    @IBOutlet public var feedImageView: UIImageView!
+    @IBOutlet public var feedImageRetryButton: UIButton!
     
-    @objc private func retry() {
+    public var onRetry: (() -> Void)?
+    
+    @IBAction private func retry() {
         onRetry?()
     }
 }
