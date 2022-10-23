@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,10 +20,14 @@
                         <view key="tableFooterView" contentMode="scaleToFill" id="XSY-uZ-38z" customClass="UIRefreshControl">
                             <rect key="frame" x="0.0" y="569" width="390" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <viewLayoutGuide key="safeArea" id="meD-Sw-JA8"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <connections>
+                                <action selector="refresh" destination="Yzv-78-dmP" eventType="valueChanged" id="Fj0-ij-N0R"/>
+                            </connections>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="491" id="02d-IU-uKo">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedImageCell" rowHeight="491" id="02d-IU-uKo" customClass="FeedImageCell" customModule="EssentialFeediOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="390" height="491"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="02d-IU-uKo" id="8lb-en-eTz">
@@ -106,8 +111,16 @@ Location</string>
                             <outlet property="delegate" destination="zhC-99-K9X" id="PtV-3P-Or2"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="feedRefresh" destination="Yzv-78-dmP" id="Q7d-Pn-4CC"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SWU-Ha-AJn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <customObject id="Yzv-78-dmP" customClass="FeedRefreshViewController" customModule="EssentialFeediOS" customModuleProvider="target">
+                    <connections>
+                        <outlet property="view" destination="XSY-uZ-38z" id="uQN-gu-pfh"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="-86.153846153846146" y="-37.677725118483409"/>
         </scene>

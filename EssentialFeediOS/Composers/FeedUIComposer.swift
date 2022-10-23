@@ -17,7 +17,8 @@ public final class FeedUIComposer {
         let bundle = Bundle(for: FeedViewController.self)
         let storyboard = UIStoryboard(name: "Feed", bundle: bundle)
         let feedController = storyboard.instantiateInitialViewController() as! FeedViewController
-        feedController.feedRefresh = refreshController
+        let refreshController = feedController.feedRefresh!
+        refreshController.delegate = presentationAdapter
         presentationAdapter.presenter = FeedPresenter(
             loadingView: WeakVirtualProxy(refreshController), feedView: FeedViewAdapter(controller: feedController, loader: imageLoader))
         return feedController
