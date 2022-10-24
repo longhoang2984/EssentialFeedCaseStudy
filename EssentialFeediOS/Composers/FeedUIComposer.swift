@@ -29,27 +29,6 @@ public final class FeedUIComposer {
     }
 }
 
-final class FeedLoaderPresentationAdapter: FeedViewControllerDelegate {
-    var presenter: FeedPresenter?
-    private let feedLoader: FeedLoader
-    
-    init(feedLoader: FeedLoader) {
-        self.feedLoader = feedLoader
-    }
-    
-    func didRequestFeedRefresh() {
-        presenter?.didStartLoading()
-        feedLoader.load { [weak self] result in
-            switch result {
-            case let .success(feed):
-                self?.presenter?.didFinishLoading(with: feed)
-            case let .failure(error):
-                self?.presenter?.didFinishLoading(with: error)
-            }
-        }
-    }
-}
-
 final class WeakVirtualProxy<T: AnyObject> {
     private weak var object: T?
     init(_ object: T) {
