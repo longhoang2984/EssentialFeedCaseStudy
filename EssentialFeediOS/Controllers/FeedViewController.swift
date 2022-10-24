@@ -16,15 +16,7 @@ public final class FeedViewController: UITableViewController, FeedLoadingView, U
     private var tasks = [IndexPath: FeedImageDataLoaderTask]()
     private var cellControllers = [IndexPath: FeedImageCellController]()
     var tableModel = [FeedImageCellController]() {
-        didSet {
-            if Thread.isMainThread {
-                tableView.reloadData()
-            } else {
-                DispatchQueue.main.async { [weak self] in
-                    self?.tableView.reloadData()
-                }
-            }
-        }
+        didSet { tableView.reloadData() }
     }
     
     public override func viewDidLoad() {
@@ -37,11 +29,6 @@ public final class FeedViewController: UITableViewController, FeedLoadingView, U
     }
     
     func display(_ viewModel: FeedLoadingViewModel) {
-        if !Thread.isMainThread {
-            return DispatchQueue.main.async { [weak self] in
-                self?.display(viewModel)
-            }
-        }
         if viewModel.isLoading {
             refreshControl?.beginRefreshing()
         } else {
