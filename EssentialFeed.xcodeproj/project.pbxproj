@@ -369,9 +369,9 @@
 				2F3F07712905CC5F009BEEB9 /* Helpers */,
 				2FC508B628F45F8100F99754 /* FeedImageCell.swift */,
 				2FC508B828F4790500F99754 /* UIView+Shimmering.swift */,
+				2F3AA4662909900A00B02FDA /* ErrorView.swift */,
 				2FE3A32129055C3600F33BE1 /* Feed.storyboard */,
 				2F2B48D22906C7A6002F0D6F /* Feed.strings */,
-				2F3AA4662909900A00B02FDA /* ErrorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
