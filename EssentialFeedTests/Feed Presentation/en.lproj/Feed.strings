@@ -5,4 +5,5 @@
   Created by Cửu Long Hoàng on 27/10/2022.
   
 */
+"FEED_VIEW_TITLE" = "My Feed";
 "FEED_VIEW_CONNECTION_ERROR" = "Couldn't connect to server";
