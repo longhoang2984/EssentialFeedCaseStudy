@@ -17,6 +17,10 @@ struct FeedErrorViewModel {
     static var noError: FeedErrorViewModel {
         return FeedErrorViewModel(message: nil)
     }
+    
+    static func error(message: String) -> FeedErrorViewModel {
+        return FeedErrorViewModel(message: message)
+    }
 }
 
 protocol FeedLoadingView {
@@ -31,6 +35,10 @@ class FeedPresenter {
     let loadingView: FeedLoadingView
     let errorView: FeedErrorView
     
+    private var feedLoadError: String {
+        return NSLocalizedString("FEED_VIEW_CONNECTION_ERROR", tableName: "Feed", bundle: Bundle(for: FeedPresenter.self), comment: "Feed load error")
+    }
+    
     init(loadingView: FeedLoadingView, errorView: FeedErrorView) {
         self.loadingView = loadingView
         self.errorView = errorView
@@ -39,6 +47,11 @@ class FeedPresenter {
     func didStartLoading() {
         errorView.display(.noError)
         loadingView.display(FeedLoadingViewModel(isLoading: true))
+    }
+    
+    func didFinishLoading(with error: Error) {
+        errorView.display(.error(message: feedLoadError))
+        loadingView.display(FeedLoadingViewModel(isLoading: false))
     }
 }
 
@@ -49,6 +62,14 @@ final class FeedPresenterTests: XCTestCase {
         
         sut.didStartLoading()
         XCTAssertEqual(spy.messages, [.display(error: nil), .display(isLoading: true)])
+    }
+    
+    func test_feed_deliversErrorOnLoadFeedError() {
+        let (sut, spy) = makeSUT()
+        
+        let error = anyNSError()
+        sut.didFinishLoading(with: error as Error)
+        XCTAssertEqual(spy.messages, [.display(error: localized("FEED_VIEW_CONNECTION_ERROR")), .display(isLoading: false)])
     }
     
     // MARK: - Helper
