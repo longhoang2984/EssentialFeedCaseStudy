@@ -132,27 +132,6 @@ class RemoteFeedLoaderTests: XCTestCase {
         return .failure(error)
     }
     
-    private func makeItems(id: UUID, description: String? = nil,
-                           location: String? = nil, imageUrl: URL) -> (model: FeedImage, json: [String: Any]) {
-        let item = FeedImage(id: id, description: description, location: location, imageURL: imageUrl)
-        
-        let json = [
-            "id": id.uuidString,
-            "description": description,
-            "location": location,
-            "image": imageUrl.absoluteString
-        ].reduce(into: [String: Any]()) { (acc, e) in
-            if let value = e.value { acc[e.key] = value }
-        }
-        
-        return (item, json)
-    }
-    
-    private func makeItemsData(_ items: [[String: Any]]) -> Data {
-        let json = ["items": items]
-        return try! JSONSerialization.data(withJSONObject: json)
-    }
-    
     class HTTPClientSpy: HTTPClient {
         
         private var messages = [(url: URL, completion: (HTTPClient.Result) -> Void)]()
