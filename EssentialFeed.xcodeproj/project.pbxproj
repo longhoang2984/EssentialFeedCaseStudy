@@ -59,6 +59,7 @@
 		2F3AA46B290994C000B02FDA /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AA46A290994C000B02FDA /* FeedViewModel.swift */; };
 		2F3AA46D290994D900B02FDA /* FeedErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AA46C290994D900B02FDA /* FeedErrorViewModel.swift */; };
 		2F3AA46F2909959F00B02FDA /* UIRefreshControler+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AA46E2909959F00B02FDA /* UIRefreshControler+Helpers.swift */; };
+		2F3AA473290996DF00B02FDA /* FeedPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AA472290996DF00B02FDA /* FeedPresenterTests.swift */; };
 		2F3F07732905CC73009BEEB9 /* UITableView+Dequeueing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3F07722905CC73009BEEB9 /* UITableView+Dequeueing.swift */; };
 		2F3F07752905D1D5009BEEB9 /* UIImageView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3F07742905D1D5009BEEB9 /* UIImageView+Animations.swift */; };
 		2F43DAF028E354EA00578E22 /* EssentialFeed.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2F43DAEF28E354EA00578E22 /* EssentialFeed.docc */; };
@@ -188,6 +189,7 @@
 		2F3AA46A290994C000B02FDA /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		2F3AA46C290994D900B02FDA /* FeedErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedErrorViewModel.swift; sourceTree = "<group>"; };
 		2F3AA46E2909959F00B02FDA /* UIRefreshControler+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControler+Helpers.swift"; sourceTree = "<group>"; };
+		2F3AA472290996DF00B02FDA /* FeedPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenterTests.swift; sourceTree = "<group>"; };
 		2F3F07722905CC73009BEEB9 /* UITableView+Dequeueing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeueing.swift"; sourceTree = "<group>"; };
 		2F3F07742905D1D5009BEEB9 /* UIImageView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Animations.swift"; sourceTree = "<group>"; };
 		2F43DAEB28E354EA00578E22 /* EssentialFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -447,6 +449,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2F3AA470290996A300B02FDA /* Feed Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Feed Presentation";
+			sourceTree = "<group>";
+		};
+		2F3AA471290996C000B02FDA /* Feed Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				2F3AA472290996DF00B02FDA /* FeedPresenterTests.swift */,
+			);
+			path = "Feed Presentation";
+			sourceTree = "<group>";
+		};
 		2F3F07712905CC5F009BEEB9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,6 +508,7 @@
 				2F2705F328EB029600C4571E /* Feed Cache */,
 				2F43DB0C28E362CE00578E22 /* Feed API */,
 				2F43DB0528E356D900578E22 /* Feed Feature */,
+				2F3AA470290996A300B02FDA /* Feed Presentation */,
 				2F43DAEE28E354EA00578E22 /* EssentialFeed.h */,
 				2F43DAEF28E354EA00578E22 /* EssentialFeed.docc */,
 			);
@@ -503,6 +521,7 @@
 				2F29A8E728E75080001D9E5A /* Helpers */,
 				2F2705F428EB02A200C4571E /* Feed Cache */,
 				2F2914DC28E6180A0004FCC2 /* Feed API */,
+				2F3AA471290996C000B02FDA /* Feed Presentation */,
 			);
 			path = EssentialFeedTests;
 			sourceTree = "<group>";
@@ -873,6 +892,7 @@
 			files = (
 				2F29959728ED738100FE13D4 /* ValidateFeedCachedUseCaseTests.swift in Sources */,
 				2F43DB0B28E357EF00578E22 /* RemoteFeedLoaderTests.swift in Sources */,
+				2F3AA473290996DF00B02FDA /* FeedPresenterTests.swift in Sources */,
 				2F29A8E928E75094001D9E5A /* XCTestCase+TrackingMemoryLeak.swift in Sources */,
 				2F2D797D28F0075100826476 /* XCTestCase+FailableInsertFeedStoreSpecs.swift in Sources */,
 				2F29959B28ED79DE00FE13D4 /* SharedTestsHelpers.swift in Sources */,
