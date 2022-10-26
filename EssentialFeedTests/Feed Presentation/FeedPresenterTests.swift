@@ -8,69 +8,6 @@
 import XCTest
 import EssentialFeed
 
-struct FeedViewModel {
-    let feed: [FeedImage]
-}
-
-struct FeedLoadingViewModel {
-    let isLoading: Bool
-}
-
-struct FeedErrorViewModel {
-    var message: String?
-    
-    static var noError: FeedErrorViewModel {
-        return FeedErrorViewModel(message: nil)
-    }
-    
-    static func error(message: String) -> FeedErrorViewModel {
-        return FeedErrorViewModel(message: message)
-    }
-}
-
-protocol FeedView {
-    func display(_ viewModel: FeedViewModel)
-}
-
-protocol FeedLoadingView {
-    func display(_ viewModel: FeedLoadingViewModel)
-}
-
-protocol FeedErrorView {
-    func display(_ viewModel: FeedErrorViewModel)
-}
-
-class FeedPresenter {
-    let loadingView: FeedLoadingView
-    let feedView: FeedView
-    let errorView: FeedErrorView
-    
-    private var feedLoadError: String {
-        return NSLocalizedString("FEED_VIEW_CONNECTION_ERROR", tableName: "Feed", bundle: Bundle(for: FeedPresenter.self), comment: "Feed load error")
-    }
-    
-    init(loadingView: FeedLoadingView, feedView: FeedView, errorView: FeedErrorView) {
-        self.loadingView = loadingView
-        self.feedView = feedView
-        self.errorView = errorView
-    }
-    
-    func didStartLoading() {
-        errorView.display(.noError)
-        loadingView.display(FeedLoadingViewModel(isLoading: true))
-    }
-    
-    func didFinishLoading(with feed: [FeedImage]) {
-        feedView.display(FeedViewModel(feed: feed))
-        loadingView.display(FeedLoadingViewModel(isLoading: false))
-    }
-    
-    func didFinishLoading(with error: Error) {
-        errorView.display(.error(message: feedLoadError))
-        loadingView.display(FeedLoadingViewModel(isLoading: false))
-    }
-}
-
 final class FeedPresenterTests: XCTestCase {
 
     func test_feed_deliversNoErrorOnLoading() {

@@ -7,6 +7,7 @@
 
 import Foundation
 import XCTest
+import EssentialFeed
 
 func localized(_ key: String, file: StaticString = #file, line: UInt = #line) -> String {
     let table = "Feed"
