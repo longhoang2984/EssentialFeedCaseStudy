@@ -38,10 +38,9 @@ final class RemoteFeedImageDataLoaderTests: XCTestCase {
     
     func test_loadImageDataFromURL_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
-        let error = anyNSError()
         
-        expect(sut, toCompletion: .failure(error), when: {
-            client.completion(with: error, at: 0)
+        expect(sut, toCompletion: failure(.connectivity), when: {
+            client.completion(with: anyNSError(), at: 0)
         })
     }
     
