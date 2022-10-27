@@ -15,6 +15,10 @@ func anyNSError() -> NSError {
     return NSError(domain: "error", code: 1)
 }
 
+func anyData() -> Data {
+    return Data()
+}
+
 func makeItems(id: UUID, description: String? = nil,
                        location: String? = nil, imageUrl: URL) -> (model: FeedImage, json: [String: Any]) {
     let item = FeedImage(id: id, description: description, location: location, imageURL: imageUrl)
@@ -35,3 +39,4 @@ func makeItemsData(_ items: [[String: Any]]) -> Data {
     let json = ["items": items]
     return try! JSONSerialization.data(withJSONObject: json)
 }
+
