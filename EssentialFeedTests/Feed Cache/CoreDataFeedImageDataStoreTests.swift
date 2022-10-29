@@ -26,6 +26,16 @@ final class CoreDataFeedImageDataStoreTests: XCTestCase {
         expect(sut, toCompleteRetrievalWith: notFound(), for: notMatchURL)
     }
     
+    func test_retrieveImageData_deliversFoundDataWhenThereIsAStoredImageDataMatchingURL() {
+        let sut = makeSUT()
+        let storeData = anyData()
+        let matchingURL = anyURL()
+        
+        insert(storeData, for: matchingURL, into: sut)
+        
+        expect(sut, toCompleteRetrievalWith: found(storeData), for: matchingURL)
+    }
+    
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> CoreDataFeedStore {
         let storeBundle = Bundle(for: CoreDataFeedStore.self)
@@ -41,6 +51,10 @@ final class CoreDataFeedImageDataStoreTests: XCTestCase {
     
     private func localImage(url: URL) -> LocalFeedImage {
         LocalFeedImage(id: UUID(), description: "any", location: "any", url: url)
+    }
+    
+    private func found(_ data: Data) -> FeedImageDataStore.RetrievalResult {
+        return .success(data)
     }
     
     private func expect(_ sut: CoreDataFeedStore, toCompleteRetrievalWith expectedResult: FeedImageDataStore.RetrievalResult, for url: URL, file: StaticString = #file, line: UInt = #line) {
@@ -59,7 +73,6 @@ final class CoreDataFeedImageDataStoreTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    //insert(anyData(), for: url, into: sut)
     private func insert(_ data: Data, for url: URL, into sut: CoreDataFeedStore, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for cache insertion")
         let image = localImage(url: url)
