@@ -9,8 +9,6 @@ import XCTest
 import EssentialFeed
 
 class URLSessionHTTPClientTests: XCTestCase {
-    
-    
     override func tearDown() {
         super.tearDown()
         URLProtocolStub.removeStub()
