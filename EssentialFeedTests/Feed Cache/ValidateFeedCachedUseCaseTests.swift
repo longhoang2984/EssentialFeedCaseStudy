@@ -111,6 +111,17 @@ final class ValidateFeedCachedUseCaseTests: XCTestCase {
             store.completionRetrievalWithEmptyCache()
         }
     }
+    
+    func test_validateCache_succeedsOnNonExpiredCache() {
+        let feed = uniqueFeeds()
+        let fixedCurrentDate = Date()
+        let nonExpiredTimestamp = fixedCurrentDate.minusFeedCacheMaxAge().add(seconds: 1)
+        let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
+        
+        expect(sut, toCompleteWith: .success(())) {
+            store.completionRetrieval(with: feed.local, timestamp: nonExpiredTimestamp)
+        }
+    }
 
     // MARK: - Helpers
     private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #filePath, line: UInt = #line) -> (sut: LocalFeedLoader, store: FeedStoreSpy) {
