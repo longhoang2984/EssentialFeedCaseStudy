@@ -74,6 +74,8 @@
 		2F43DB0B28E357EF00578E22 /* RemoteFeedLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F43DB0A28E357EF00578E22 /* RemoteFeedLoaderTests.swift */; };
 		2F43DB0E28E362DE00578E22 /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F43DB0D28E362DE00578E22 /* RemoteFeedLoader.swift */; };
 		2F4792EA290D13B30012D085 /* LocalFeedImageDataLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4792E9290D13B30012D085 /* LocalFeedImageDataLoaderTests.swift */; };
+		2F4792EC290D22A50012D085 /* FeedImageDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4792EB290D22A50012D085 /* FeedImageDataStore.swift */; };
+		2F4792EE290D22C10012D085 /* LocalFeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4792ED290D22C10012D085 /* LocalFeedImageDataLoader.swift */; };
 		2FC508B728F45F8100F99754 /* FeedImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC508B628F45F8100F99754 /* FeedImageCell.swift */; };
 		2FC508B928F4790500F99754 /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC508B828F4790500F99754 /* UIView+Shimmering.swift */; };
 		2FE3A32229055C3600F33BE1 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FE3A32129055C3600F33BE1 /* Feed.storyboard */; };
@@ -210,6 +212,8 @@
 		2F43DB0A28E357EF00578E22 /* RemoteFeedLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoaderTests.swift; sourceTree = "<group>"; };
 		2F43DB0D28E362DE00578E22 /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
 		2F4792E9290D13B30012D085 /* LocalFeedImageDataLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFeedImageDataLoaderTests.swift; sourceTree = "<group>"; };
+		2F4792EB290D22A50012D085 /* FeedImageDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataStore.swift; sourceTree = "<group>"; };
+		2F4792ED290D22C10012D085 /* LocalFeedImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFeedImageDataLoader.swift; sourceTree = "<group>"; };
 		2FC508B628F45F8100F99754 /* FeedImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageCell.swift; sourceTree = "<group>"; };
 		2FC508B828F4790500F99754 /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
 		2FE3A32129055C3600F33BE1 /* Feed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
@@ -292,6 +296,8 @@
 				2F2705F928EB33E500C4571E /* FeedStore.swift */,
 				2F2705FB28EB3DBE00C4571E /* LocalFeedImage.swift */,
 				2F29959C28EDE6A200FE13D4 /* FeedCachePolicy.swift */,
+				2F4792EB290D22A50012D085 /* FeedImageDataStore.swift */,
+				2F4792ED290D22C10012D085 /* LocalFeedImageDataLoader.swift */,
 			);
 			path = "Feed Cache";
 			sourceTree = "<group>";
@@ -889,6 +895,7 @@
 				2F43DB0928E3578B00578E22 /* FeedLoader.swift in Sources */,
 				2FFAAFBF28F071190015A774 /* CoreDataFeedStore.swift in Sources */,
 				2FFAAFCA28F08B660015A774 /* ManagedCache.swift in Sources */,
+				2F4792EC290D22A50012D085 /* FeedImageDataStore.swift in Sources */,
 				2F2914DB28E6101D0004FCC2 /* FeedImagesMapper.swift in Sources */,
 				2F43DB0728E356E400578E22 /* FeedImage.swift in Sources */,
 				2F30D521290B097A003E5DFF /* HTTPURLResponse+StatusCode.swift in Sources */,
@@ -897,6 +904,7 @@
 				2F2705F828EB33B400C4571E /* LocalFeedLoader.swift in Sources */,
 				2FFAAFCC28F08B730015A774 /* ManagedFeedImage.swift in Sources */,
 				2F2705FE28EB40D400C4571E /* RemoteFeedItem.swift in Sources */,
+				2F4792EE290D22C10012D085 /* LocalFeedImageDataLoader.swift in Sources */,
 				2F30D519290AD7F1003E5DFF /* FeedImageDataLoader.swift in Sources */,
 				2F43DAF028E354EA00578E22 /* EssentialFeed.docc in Sources */,
 			);
