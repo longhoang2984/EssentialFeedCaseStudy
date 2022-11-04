@@ -14,6 +14,7 @@
 		2F30D4B7290ACA97003E5DFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F30D4B6290ACA97003E5DFF /* Assets.xcassets */; };
 		2F30D4BA290ACA97003E5DFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F30D4B8290ACA97003E5DFF /* LaunchScreen.storyboard */; };
 		2FDD845C291553D200F564FD /* FeedLoaderWithFallbackCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDD845B291553D200F564FD /* FeedLoaderWithFallbackCompositeTests.swift */; };
+		2FDD845E29155F4200F564FD /* FeedLoaderWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDD845D29155F4200F564FD /* FeedLoaderWithFallbackComposite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		2F30D4BB290ACA97003E5DFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F30D4C0290ACA97003E5DFF /* EssensialAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssensialAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FDD845B291553D200F564FD /* FeedLoaderWithFallbackCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderWithFallbackCompositeTests.swift; sourceTree = "<group>"; };
+		2FDD845D29155F4200F564FD /* FeedLoaderWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderWithFallbackComposite.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				2F30D4B6290ACA97003E5DFF /* Assets.xcassets */,
 				2F30D4B8290ACA97003E5DFF /* LaunchScreen.storyboard */,
 				2F30D4BB290ACA97003E5DFF /* Info.plist */,
+				2FDD845D29155F4200F564FD /* FeedLoaderWithFallbackComposite.swift */,
 			);
 			path = EssensialApp;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 			files = (
 				2F30D4B2290ACA96003E5DFF /* ViewController.swift in Sources */,
 				2F30D4AE290ACA96003E5DFF /* AppDelegate.swift in Sources */,
+				2FDD845E29155F4200F564FD /* FeedLoaderWithFallbackComposite.swift in Sources */,
 				2F30D4B0290ACA96003E5DFF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
