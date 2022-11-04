@@ -10,13 +10,22 @@ import EssentialFeed
 
 class FeedLoaderWithFallbackComposite {
     private let primary: FeedLoader
+    private let fallback: FeedLoader
     
     init(primary: FeedLoader, fallback: FeedLoader) {
         self.primary = primary
+        self.fallback = fallback
     }
     
     func load(completion: @escaping (FeedLoader.Result) -> Void) {
-        primary.load(completion: completion)
+        primary.load { [weak self] result in
+            switch result {
+            case .success:
+                completion(result)
+            case .failure:
+                self?.fallback.load(completion: completion)
+            }
+        }
     }
 }
 
@@ -39,7 +48,24 @@ class FeedLoaderWithFallbackCompositeTests: XCTestCase {
         }
         
         wait(for: [exp], timeout: 1.0)
+    }
+    
+    func test_load_deliversFallbackFeedOnPrimaryFailure() {
+        let fallbackFeed = uniqueFeeds()
+        let sut = makeSUT(primaryResult: .failure(anyNSError()), fallbackResult: .success(fallbackFeed))
         
+        let exp = expectation(description: "Wait for completion")
+        sut.load { result in
+            switch result {
+            case let .success(receivedFeed):
+                XCTAssertEqual(receivedFeed, fallbackFeed)
+            case .failure:
+                XCTFail("Expected load feed successfull, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
     }
     
     //MARK: - Helpers
@@ -66,6 +92,10 @@ class FeedLoaderWithFallbackCompositeTests: XCTestCase {
     
     private func anyURL() -> URL {
         URL(string: "http://a-url.com")!
+    }
+    
+    private func anyNSError() -> NSError {
+        return NSError(domain: "error", code: 1)
     }
 
     private class LoaderStub: FeedLoader {
