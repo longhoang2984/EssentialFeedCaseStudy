@@ -32,7 +32,7 @@ class FeedImageLoaderWithFallbackComposite {
         task.wrapper = primary.loadImageData(from: url) { [weak self] result in
             switch result {
             case .success:
-                break
+                completion(result)
             case .failure:
                 task.wrapper = self?.fallback.loadImageData(from: url) { _ in }
             }
@@ -91,6 +91,15 @@ final class FeedImageLoaderWithFallbackCompositeTests: XCTestCase {
         XCTAssertEqual(fallbackLoader.cancelledURLs, [url], "Expected to cancelled URL loading from fallback loader")
     }
     
+    func test_loadImageData_deliversImageDataOnPrimarySuccess() {
+        let data = anyData()
+        let (sut, primaryLoader, _) = makeSUT()
+        
+        expect(sut, toCompleteWith: .success(data)) {
+            primaryLoader.complete(with: data)
+        }
+    }
+    
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: FeedImageLoaderWithFallbackComposite, primary: LoaderSpy, fallback: LoaderSpy) {
         let primaryLoader = LoaderSpy()
@@ -108,12 +117,37 @@ final class FeedImageLoaderWithFallbackCompositeTests: XCTestCase {
         }
     }
     
+    private func expect(_ sut: FeedImageLoaderWithFallbackComposite, toCompleteWith expectedResult: FeedImageDataLoader.Result, when action: () -> Void,file: StaticString = #file, line: UInt = #line) {
+        let exp = expectation(description: "Wait to completion")
+        
+        _ = sut.loadImageData(from: anyURL()) { receivedResult in
+            switch (receivedResult, expectedResult) {
+            case let (.success(receivedData), .success(expectedData)):
+                XCTAssertEqual(receivedData, expectedData, file: file, line: line)
+            case (.failure, .failure):
+                break
+            default:
+                XCTFail("Expected \(expectedResult), got \(receivedResult) instead", file: file, line: line)
+            }
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+        
+    }
+    
     private func anyURL() -> URL {
         URL(string: "http://a-url.com")!
     }
     
     private func anyNSError() -> NSError {
         return NSError(domain: "error", code: 1)
+    }
+    
+    private func anyData() -> Data {
+        return Data("any data".utf8)
     }
     
     private class LoaderSpy: FeedImageDataLoader {
@@ -139,6 +173,10 @@ final class FeedImageLoaderWithFallbackCompositeTests: XCTestCase {
         
         func complete(with error: Error, at index: Int = 0) {
             messages[index].completion(.failure(error))
+        }
+        
+        func complete(with data: Data, at index: Int = 0) {
+            messages[index].completion(.success(data))
         }
     }
 }
