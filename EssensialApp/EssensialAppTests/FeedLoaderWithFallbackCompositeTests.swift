@@ -22,7 +22,7 @@ class FeedLoaderWithFallbackComposite {
 
 class FeedLoaderWithFallbackCompositeTests: XCTestCase {
 
-    func test_load_deliversRemoteFeedLoaderOnRemoteSuccess() {
+    func test_load_deliversPrimaryFeedOnPrimarySuccess() {
         let primaryFeed = uniqueFeeds()
         let fallbackFeed = uniqueFeeds()
         let sut = makeSUT(primaryResult: .success(primaryFeed), fallbackResult: .success(fallbackFeed))
