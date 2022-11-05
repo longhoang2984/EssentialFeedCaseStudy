@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F2DB6EE2916ADEE00A1F566 /* FeedLoaderCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2DB6ED2916ADEE00A1F566 /* FeedLoaderCacheDecoratorTests.swift */; };
-		2F2DB6F02916AF2300A1F566 /* LoaderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2DB6EF2916AF2300A1F566 /* LoaderStub.swift */; };
+		2F2DB6F02916AF2300A1F566 /* FeedLoaderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2DB6EF2916AF2300A1F566 /* FeedLoaderStub.swift */; };
 		2F30D4AE290ACA96003E5DFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F30D4AD290ACA96003E5DFF /* AppDelegate.swift */; };
 		2F30D4B0290ACA96003E5DFF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F30D4AF290ACA96003E5DFF /* SceneDelegate.swift */; };
 		2F30D4B2290ACA96003E5DFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F30D4B1290ACA96003E5DFF /* ViewController.swift */; };
@@ -35,7 +35,7 @@
 
 /* Begin PBXFileReference section */
 		2F2DB6ED2916ADEE00A1F566 /* FeedLoaderCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderCacheDecoratorTests.swift; sourceTree = "<group>"; };
-		2F2DB6EF2916AF2300A1F566 /* LoaderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderStub.swift; sourceTree = "<group>"; };
+		2F2DB6EF2916AF2300A1F566 /* FeedLoaderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderStub.swift; sourceTree = "<group>"; };
 		2F30D4AA290ACA96003E5DFF /* EssensialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssensialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F30D4AD290ACA96003E5DFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F30D4AF290ACA96003E5DFF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 			children = (
 				2FDD846429158EF300F564FD /* XCTest+TrackMemoryLeak.swift */,
 				2FDD846629158F8600F564FD /* XCTest+Helpers.swift */,
-				2F2DB6EF2916AF2300A1F566 /* LoaderStub.swift */,
+				2F2DB6EF2916AF2300A1F566 /* FeedLoaderStub.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -248,7 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F2DB6F02916AF2300A1F566 /* LoaderStub.swift in Sources */,
+				2F2DB6F02916AF2300A1F566 /* FeedLoaderStub.swift in Sources */,
 				2FDD846729158F8600F564FD /* XCTest+Helpers.swift in Sources */,
 				2F2DB6EE2916ADEE00A1F566 /* FeedLoaderCacheDecoratorTests.swift in Sources */,
 				2FDD846029155FDB00F564FD /* FeedImageLoaderWithFallbackCompositeTests.swift in Sources */,
