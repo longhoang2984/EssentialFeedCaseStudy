@@ -21,10 +21,10 @@ class FeedImageDataLoaderDecorator: FeedImageDataLoader {
     
 }
 
-final class FeedImageDataLoaderDecoratorTests: XCTestCase {
+final class FeedImageDataLoaderDecoratorTests: XCTestCase, FeedImageDataLoaderTests {
 
     func test_loadImageData_deliversImageDataOnLoaderSuccess() {
-        let imageData = anyImageData()
+        let imageData = anyData()
         let loader = FeedImageLoaderSpy()
         let sut = FeedImageDataLoaderDecorator(decoratee: loader)
         
@@ -42,41 +42,4 @@ final class FeedImageDataLoaderDecoratorTests: XCTestCase {
         }
     }
     
-    // MARK: - Helpers
-    private func anyImageData() -> Data {
-        return UIImage.make(withColor: .red).pngData()!
-    }
-    
-    private func expect(_ sut: FeedImageDataLoader, toCompleteWith expectedResult: FeedImageDataLoader.Result, when action: () -> Void,file: StaticString = #file, line: UInt = #line) {
-        let exp = expectation(description: "Wait to completion")
-        
-        _ = sut.loadImageData(from: anyURL()) { receivedResult in
-            switch (receivedResult, expectedResult) {
-            case let (.success(receivedData), .success(expectedData)):
-                XCTAssertEqual(receivedData, expectedData, file: file, line: line)
-            case (.failure, .failure):
-                break
-            default:
-                XCTFail("Expected \(expectedResult), got \(receivedResult) instead", file: file, line: line)
-            }
-            exp.fulfill()
-        }
-        
-        action()
-        
-        wait(for: [exp], timeout: 1.0)
-    }
-}
-
-extension UIImage {
-    static func make(withColor color: UIColor) -> UIImage {
-        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()!
-        context.setFillColor(color.cgColor)
-        context.fill(rect)
-        let img = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return img!
-    }
 }
