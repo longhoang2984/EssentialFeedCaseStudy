@@ -42,8 +42,4 @@ class FeedLoaderWithFallbackCompositeTests: XCTestCase, FeedLoaderTests {
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }
-
-    func uniqueFeeds() -> [FeedImage] {
-        return [FeedImage(id: UUID(), description: "desc", location: "location", imageURL: anyURL())]
-    }
 }

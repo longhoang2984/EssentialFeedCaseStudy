@@ -30,10 +30,4 @@ final class FeedLoaderCacheDecoratorTests: XCTestCase, FeedLoaderTests {
         
         expect(sut, toCompleteWith: .success(feed))
     }
-
-    //MARK: - Helpers
-
-    func uniqueFeeds() -> [FeedImage] {
-        return [FeedImage(id: UUID(), description: "desc", location: "location", imageURL: anyURL())]
-    }
 }
