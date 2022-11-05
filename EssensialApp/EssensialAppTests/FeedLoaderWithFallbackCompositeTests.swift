@@ -9,7 +9,7 @@ import XCTest
 import EssentialFeed
 import EssensialApp
 
-class FeedLoaderWithFallbackCompositeTests: XCTestCase {
+class FeedLoaderWithFallbackCompositeTests: XCTestCase, FeedLoaderTests {
 
     func test_load_deliversPrimaryFeedOnPrimarySuccess() {
         let primaryFeed = uniqueFeeds()
@@ -41,23 +41,6 @@ class FeedLoaderWithFallbackCompositeTests: XCTestCase {
         trackForMemoryLeaks(fallbackLoader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
-    }
-    
-    private func expect(_ sut: FeedLoaderWithFallbackComposite, toCompleteWith expectedResult: FeedLoader.Result, file: StaticString = #file, line: UInt = #line) {
-        let exp = expectation(description: "Wait for completion")
-        sut.load { receivedResult in
-            switch (receivedResult, expectedResult) {
-            case let (.success(receivedFeed), .success(expectedFeed)):
-                XCTAssertEqual(receivedFeed, expectedFeed, file: file, line: line)
-            case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
-                XCTAssertEqual(receivedError, expectedError, file: file, line: line)
-            default:
-                XCTFail("Expected \(expectedResult), got \(receivedResult) instead")
-            }
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1.0)
     }
 
     func uniqueFeeds() -> [FeedImage] {
