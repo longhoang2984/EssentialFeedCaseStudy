@@ -34,7 +34,6 @@ class FeedLoaderWithFallbackCompositeTests: XCTestCase {
     
     //MARK: - Helpers
     func makeSUT(primaryResult: FeedLoader.Result, fallbackResult: FeedLoader.Result, file: StaticString = #file, line: UInt = #line) -> FeedLoaderWithFallbackComposite {
-        
         let primaryLoader = LoaderStub(result: primaryResult)
         let fallbackLoader = LoaderStub(result: fallbackResult)
         let sut = FeedLoaderWithFallbackComposite(primary: primaryLoader, fallback: fallbackLoader)
@@ -63,17 +62,5 @@ class FeedLoaderWithFallbackCompositeTests: XCTestCase {
 
     func uniqueFeeds() -> [FeedImage] {
         return [FeedImage(id: UUID(), description: "desc", location: "location", imageURL: anyURL())]
-    }
-    
-    private class LoaderStub: FeedLoader {
-        private let result: FeedLoader.Result
-        
-        init(result: FeedLoader.Result) {
-            self.result = result
-        }
-        
-        func load(completion: @escaping (FeedLoader.Result) -> Void) {
-            completion(result)
-        }
     }
 }
