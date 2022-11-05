@@ -43,7 +43,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     cache: localFeedLoader),
                 fallback: localFeedLoader),
             imageLoader: FeedImageLoaderWithFallbackComposite(
-                primary: remoteImageLoader,
+                primary: FeedImageDataLoaderDecorator(
+                    decoratee: remoteImageLoader,
+                    cache: localImageLoader),
                 fallback: localImageLoader))
         window?.rootViewController = controller
         window?.makeKeyAndVisible()
