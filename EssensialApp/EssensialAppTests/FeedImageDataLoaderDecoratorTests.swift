@@ -33,6 +33,15 @@ final class FeedImageDataLoaderDecoratorTests: XCTestCase {
         }
     }
     
+    func test_loadImageData_deliversErrorOnLoaderFailure() {
+        let loader = LoaderSpy()
+        let sut = FeedImageDataLoaderDecorator(decoratee: loader)
+        
+        expect(sut, toCompleteWith: .failure(anyNSError())) {
+            loader.complete(with: anyNSError())
+        }
+    }
+    
     // MARK: - Helpers
     private func anyImageData() -> Data {
         return UIImage.make(withColor: .red).pngData()!
