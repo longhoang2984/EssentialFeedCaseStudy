@@ -41,7 +41,7 @@
                             </connections>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedImageCell" rowHeight="491" id="02d-IU-uKo" customClass="FeedImageCell" customModule="EssentialFeediOS" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedImageCell" rowHeight="491" id="02d-IU-uKo" userLabel="FeedImageCell" customClass="FeedImageCell" customModule="EssentialFeediOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="94" width="390" height="491"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="02d-IU-uKo" id="8lb-en-eTz">
@@ -83,6 +83,9 @@ Location</string>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WyY-MR-T9j">
                                                             <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="FeedImageView">
+                                                                <bool key="isElement" value="YES"/>
+                                                            </accessibility>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CxC-IP-0US">
                                                             <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
@@ -131,6 +134,9 @@ Location</string>
                                         <constraint firstItem="NL1-KM-EB4" firstAttribute="leading" secondItem="8lb-en-eTz" secondAttribute="leadingMargin" id="sAX-xU-bbn"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration" identifier="FeedImageCell" label="FeedImageCell">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <connections>
                                     <outlet property="descriptionLabel" destination="bWA-F0-HA8" id="04j-tZ-e96"/>
                                     <outlet property="feedImageContainer" destination="SH1-KV-guP" id="03B-2d-txB"/>
