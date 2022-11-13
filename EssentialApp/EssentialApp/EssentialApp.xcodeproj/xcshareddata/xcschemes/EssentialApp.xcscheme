@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2F30D4A9290ACA96003E5DFF"
-               BuildableName = "EssensialApp.app"
-               BlueprintName = "EssensialApp"
-               ReferencedContainer = "container:EssensialApp.xcodeproj">
+               BlueprintIdentifier = "2FB2AB93292131F500DADC6D"
+               BuildableName = "EssentialApp.app"
+               BlueprintName = "EssentialApp"
+               ReferencedContainer = "container:EssentialApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,17 +26,19 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
       <Testables>
          <TestableReference
             skipped = "NO"
-            parallelizable = "YES">
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2F30D4BF290ACA97003E5DFF"
-               BuildableName = "EssensialAppTests.xctest"
-               BlueprintName = "EssensialAppTests"
-               ReferencedContainer = "container:EssensialApp.xcodeproj">
+               BlueprintIdentifier = "2FB2ABA9292131F800DADC6D"
+               BuildableName = "EssentialAppTests.xctest"
+               BlueprintName = "EssentialAppTests"
+               ReferencedContainer = "container:EssentialApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,10 +57,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2F30D4A9290ACA96003E5DFF"
-            BuildableName = "EssensialApp.app"
-            BlueprintName = "EssensialApp"
-            ReferencedContainer = "container:EssensialApp.xcodeproj">
+            BlueprintIdentifier = "2FB2AB93292131F500DADC6D"
+            BuildableName = "EssentialApp.app"
+            BlueprintName = "EssentialApp"
+            ReferencedContainer = "container:EssentialApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2F30D4A9290ACA96003E5DFF"
-            BuildableName = "EssensialApp.app"
-            BlueprintName = "EssensialApp"
-            ReferencedContainer = "container:EssensialApp.xcodeproj">
+            BlueprintIdentifier = "2FB2AB93292131F500DADC6D"
+            BuildableName = "EssentialApp.app"
+            BlueprintName = "EssentialApp"
+            ReferencedContainer = "container:EssentialApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

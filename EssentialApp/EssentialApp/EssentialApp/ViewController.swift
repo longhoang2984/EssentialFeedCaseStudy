@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  EssensialApp
+//  EssentialApp
 //
-//  Created by Cửu Long Hoàng on 27/10/2022.
+//  Created by Cửu Long Hoàng on 13/11/2022.
 //
 
 import UIKit
