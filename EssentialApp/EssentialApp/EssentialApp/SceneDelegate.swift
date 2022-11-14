@@ -8,6 +8,7 @@
 import UIKit
 import EssentialFeed
 import EssentialFeediOS
+import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -19,18 +20,53 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window = UIWindow(windowScene: windowScene)
                 
                 let url = URL(string: "https://static1.squarespace.com/static/5891c5b8d1758ec68ef5dbc2/t/5db4155a4fbade21d17ecd28/1572083034355/essential_app_feed.json")!
-                let session = URLSession(configuration: .ephemeral)
-                let client = URLSessionHTTPClient(session: session)
+
+                let client = makeRemoteClient()
                 let remoteFeedLoader = RemoteFeedLoader(url: url, client: client)
                 let remoteImageLoader = RemoteFeedImageDataLoader(client: client)
-                
-                let controller = FeedUIComposer.feedComposedWith(
-                    feedLoader: remoteFeedLoader,
-                    imageLoader: remoteImageLoader)
-                window?.rootViewController = controller
-                window?.makeKeyAndVisible()
+        
+        let localStoreURL = NSPersistentContainer
+            .defaultDirectoryURL()
+            .appendingPathExtension("feed-store.sqlite")
+        
+        let localStore = try! CoreDataFeedStore(storeURL: localStoreURL)
+        let localFeedLoader = LocalFeedLoader(store: localStore, currentDate: Date.init)
+        let localImageLoader = LocalFeedImageDataLoader(store: localStore)
+        
+        let controller = FeedUIComposer.feedComposedWith(
+            feedLoader: FeedLoaderWithFallbackComposite(
+                primary: FeedLoaderCacheDecorator(
+                    decoratee: remoteFeedLoader,
+                    cache: localFeedLoader),
+                fallback: localFeedLoader),
+            imageLoader: FeedImageLoaderWithFallbackComposite(
+                primary: localImageLoader,
+                fallback: FeedImageDataLoaderDecorator(
+                    decoratee: remoteImageLoader,
+                    cache: localImageLoader)))
+        
+        window?.rootViewController = controller
+        window?.makeKeyAndVisible()
     }
+    
+    private func makeRemoteClient() -> HTTPClient {
+        switch UserDefaults.standard.string(forKey: "connectivity") {
+        case "offline":
+            return AlwaysFailingHTTPClient()
+        default:
+            return URLSessionHTTPClient(session: .init(configuration: .ephemeral))
+        }
+    }
+}
 
-
+private class AlwaysFailingHTTPClient: HTTPClient {
+    private class Task: HTTPClientTask {
+        func cancel() {}
+    }
+    
+    func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
+        completion(.failure(NSError(domain: "offline", code: 0)))
+        return Task()
+    }
 }
 
