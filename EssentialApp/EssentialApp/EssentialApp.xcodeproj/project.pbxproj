@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F32858729229E6D00A464AB /* DebuggingSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F32858629229E6D00A464AB /* DebuggingSceneDelegate.swift */; };
 		2FB2AB98292131F500DADC6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB2AB97292131F500DADC6D /* AppDelegate.swift */; };
 		2FB2AB9A292131F500DADC6D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB2AB99292131F500DADC6D /* SceneDelegate.swift */; };
 		2FB2AB9C292131F500DADC6D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB2AB9B292131F500DADC6D /* ViewController.swift */; };
@@ -67,6 +68,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2F32858629229E6D00A464AB /* DebuggingSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingSceneDelegate.swift; sourceTree = "<group>"; };
 		2FB2AB94292131F500DADC6D /* EssentialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FB2AB97292131F500DADC6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FB2AB99292131F500DADC6D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				2FB2ABA0292131F700DADC6D /* Assets.xcassets */,
 				2FB2ABA2292131F700DADC6D /* LaunchScreen.storyboard */,
 				2FB2ABA5292131F700DADC6D /* Info.plist */,
+				2F32858629229E6D00A464AB /* DebuggingSceneDelegate.swift */,
 			);
 			path = EssentialApp;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				2FB2AC00292139BA00DADC6D /* FeedLoaderWithFallbackComposite.swift in Sources */,
 				2FB2AB9C292131F500DADC6D /* ViewController.swift in Sources */,
 				2FB2AB98292131F500DADC6D /* AppDelegate.swift in Sources */,
+				2F32858729229E6D00A464AB /* DebuggingSceneDelegate.swift in Sources */,
 				2FB2AB9A292131F500DADC6D /* SceneDelegate.swift in Sources */,
 				2FB2ABFF292139BA00DADC6D /* FeedImageLoaderWithFallbackComposite.swift in Sources */,
 				2FB2ABFD292139BA00DADC6D /* FeedLoaderCacheDecorator.swift in Sources */,
