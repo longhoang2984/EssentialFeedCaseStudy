@@ -188,8 +188,8 @@
 				2FB2ABDE2921385800DADC6D /* FeedImageLoaderWithFallbackCompositeTests.swift */,
 				2FB2ABDC2921385800DADC6D /* FeedLoaderCacheDecoratorTests.swift */,
 				2FB2ABDF2921385800DADC6D /* FeedLoaderWithFallbackCompositeTests.swift */,
-				2FB2ABE02921385800DADC6D /* Helpers */,
 				2F4A39362924B92000849B49 /* FeedAcceptanceTests.swift */,
+				2FB2ABE02921385800DADC6D /* Helpers */,
 			);
 			path = EssentialAppTests;
 			sourceTree = "<group>";
