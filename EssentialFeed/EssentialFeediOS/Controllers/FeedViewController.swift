@@ -74,4 +74,10 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
     private func cellController(forRowAt indexPath: IndexPath) -> FeedImageCellController {
         return tableModel[indexPath.row]
     }
+    
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        tableView.sizeTableHeaderToFit()
+    }
 }
