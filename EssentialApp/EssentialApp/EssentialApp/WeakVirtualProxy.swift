@@ -6,6 +6,7 @@
 //
 
 import EssentialFeed
+import EssentialFeediOS
 import UIKit
 
 final class WeakVirtualProxy<T: AnyObject> {
