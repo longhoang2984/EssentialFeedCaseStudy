@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F32858729229E6D00A464AB /* DebuggingSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F32858629229E6D00A464AB /* DebuggingSceneDelegate.swift */; };
 		2F4A39082923F5A200849B49 /* SceneDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A39072923F5A200849B49 /* SceneDelegateTests.swift */; };
 		2F4A39262924B63C00849B49 /* FeedLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A39212924B63C00849B49 /* FeedLoaderPresentationAdapter.swift */; };
 		2F4A39272924B63C00849B49 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A39222924B63C00849B49 /* MainQueueDispatchDecorator.swift */; };
@@ -75,7 +74,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2F32858629229E6D00A464AB /* DebuggingSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingSceneDelegate.swift; sourceTree = "<group>"; };
 		2F4A39072923F5A200849B49 /* SceneDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateTests.swift; sourceTree = "<group>"; };
 		2F4A39202924B63C00849B49 /* FeedImageDataLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
 		2F4A39212924B63C00849B49 /* FeedLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 				2FB2ABA0292131F700DADC6D /* Assets.xcassets */,
 				2FB2ABA2292131F700DADC6D /* LaunchScreen.storyboard */,
 				2FB2ABA5292131F700DADC6D /* Info.plist */,
-				2F32858629229E6D00A464AB /* DebuggingSceneDelegate.swift */,
 			);
 			path = EssentialApp;
 			sourceTree = "<group>";
@@ -335,7 +332,6 @@
 				2FB2AB9C292131F500DADC6D /* ViewController.swift in Sources */,
 				2F4A39262924B63C00849B49 /* FeedLoaderPresentationAdapter.swift in Sources */,
 				2FB2AB98292131F500DADC6D /* AppDelegate.swift in Sources */,
-				2F32858729229E6D00A464AB /* DebuggingSceneDelegate.swift in Sources */,
 				2F4A39272924B63C00849B49 /* MainQueueDispatchDecorator.swift in Sources */,
 				2FB2AB9A292131F500DADC6D /* SceneDelegate.swift in Sources */,
 				2FB2ABFF292139BA00DADC6D /* FeedImageLoaderWithFallbackComposite.swift in Sources */,
