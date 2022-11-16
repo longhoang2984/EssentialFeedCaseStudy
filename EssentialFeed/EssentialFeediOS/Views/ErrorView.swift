@@ -11,9 +11,13 @@ public final class ErrorView: UIView {
     @IBOutlet private var label: UILabel!
     
     public var message: String? {
-        get { return label.text }
+        get { return isVisible ? label.text : nil }
         set {
-            setMessageAnimated(newValue)
+            if let msg = newValue {
+                showAnimated(msg)
+            } else {
+                hideMessageAnimated()
+            }
         }
     }
     
