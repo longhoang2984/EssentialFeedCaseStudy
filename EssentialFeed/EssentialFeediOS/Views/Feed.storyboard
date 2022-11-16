@@ -20,8 +20,8 @@
                             <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4u-0x-sHm">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4u-0x-sHm">
+                                    <rect key="frame" x="0.0" y="4" width="390" height="36"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -31,8 +31,8 @@
                             <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="P4u-0x-sHm" secondAttribute="trailing" id="53P-bD-Ye1"/>
-                                <constraint firstItem="P4u-0x-sHm" firstAttribute="top" secondItem="ua9-1P-KEM" secondAttribute="top" id="GOU-07-J1O"/>
-                                <constraint firstAttribute="bottom" secondItem="P4u-0x-sHm" secondAttribute="bottom" id="TMe-2l-gIb"/>
+                                <constraint firstItem="P4u-0x-sHm" firstAttribute="top" secondItem="ua9-1P-KEM" secondAttribute="top" constant="4" id="GOU-07-J1O"/>
+                                <constraint firstAttribute="bottom" secondItem="P4u-0x-sHm" secondAttribute="bottom" constant="4" id="TMe-2l-gIb"/>
                                 <constraint firstItem="P4u-0x-sHm" firstAttribute="leading" secondItem="ua9-1P-KEM" secondAttribute="leading" id="l8Z-CT-b06"/>
                             </constraints>
                             <connections>
