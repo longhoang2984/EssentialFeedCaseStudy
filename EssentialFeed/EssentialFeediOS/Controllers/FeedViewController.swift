@@ -16,6 +16,7 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
     public var delegate: FeedViewControllerDelegate?
     @IBOutlet public var errorView: ErrorView?
     private var tasks = [IndexPath: FeedImageDataLoaderTask]()
+    private var loadControllers = [IndexPath: FeedImageCellController]()
     private var tableModel = [FeedImageCellController]() {
         didSet { tableView.reloadData() }
     }
@@ -30,6 +31,7 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
     }
     
     public func display(_ cellControllers: [FeedImageCellController]) {
+        loadControllers = [:]
         tableModel = cellControllers
     }
     
@@ -68,11 +70,14 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
     }
     
     private func cancelCellControllerLoad(forRowAt indexPath: IndexPath) {
-        cellController(forRowAt: indexPath).cancelLoad()
+        loadControllers[indexPath]?.cancelLoad()
+        loadControllers[indexPath] = nil
     }
     
     private func cellController(forRowAt indexPath: IndexPath) -> FeedImageCellController {
-        return tableModel[indexPath.row]
+        let controller = tableModel[indexPath.row]
+        loadControllers[indexPath] = controller
+        return controller
     }
     
     public override func viewDidLayoutSubviews() {
