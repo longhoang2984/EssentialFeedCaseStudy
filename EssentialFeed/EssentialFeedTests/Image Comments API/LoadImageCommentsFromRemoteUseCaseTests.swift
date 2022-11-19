@@ -84,11 +84,17 @@ final class LoadImageCommentsFromRemoteUseCaseTests: XCTestCase {
     func test_load_deliversErrorOn2xxHTTPResponseWithSONItems() {
         let (sut, client) = makeSUT()
         
-        let item1 = makeItems(id: UUID(),
-                              imageUrl: URL(string: "https://images.com")!)
-        let item2 = makeItems(id: UUID(), description: "description",
-                              location: "location",
-                              imageUrl: URL(string: "https://images.com")!)
+        let item1 = makeItem(
+            id: UUID(),
+            message: "a message",
+            createdAt: (Date(timeIntervalSince1970: 1666195969), "2022-10-19T16:12:49+0000"),
+            username: "a username")
+
+        let item2 = makeItem(
+            id: UUID(),
+            message: "another message",
+            createdAt: (Date(timeIntervalSince1970: 1666282369), "2022-10-20T16:12:49+0000"),
+            username: "another username")
         
         let samplesStatusCode = [200, 240, 222, 299, 232]
         
@@ -144,6 +150,22 @@ final class LoadImageCommentsFromRemoteUseCaseTests: XCTestCase {
     
     private func failure(_ error: RemoteImageCommentsLoader.Error) -> RemoteImageCommentsLoader.Result {
         return .failure(error)
+    }
+    
+    private func makeItem(id: UUID, message: String,
+                           createdAt: (date: Date, ios8601String: String), username: String) -> (model: ImageComment, json: [String: Any]) {
+        let item = ImageComment(id: id, message: message, createdAt: createdAt.date, username: username)
+        
+        let json: [String: Any] = [
+            "id": id.uuidString,
+            "message": message,
+            "created_at": createdAt.ios8601String,
+            "author": [
+                "username": username
+            ]
+        ]
+        
+        return (item, json)
     }
     
     class HTTPClientSpy: HTTPClient {
