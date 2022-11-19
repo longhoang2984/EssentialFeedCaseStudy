@@ -71,7 +71,7 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         }
     }
     
-    func test_load_deliversErrorOn200HTTPResponseWithSONItems() {
+    func test_load_deliversItemsOn200HTTPResponseWithSONItems() {
         let (sut, client) = makeSUT()
         
         let item1 = makeItems(id: UUID(),
