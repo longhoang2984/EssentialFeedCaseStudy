@@ -9,41 +9,6 @@ import XCTest
 import EssentialFeed
 
 class LoadFeedFromRemoteUseCaseTests: XCTestCase {
-    
-    func test_init_doesNotRequestDataFromURL() {
-        let url = URL(string: "https://google.com")!
-        let (_, client) = makeSUT(url: url)
-        
-        XCTAssertTrue(client.requestedURLs.isEmpty)
-    }
-    
-    func test_load_requestsDataFromURL() {
-        let url = URL(string: "https://google.com")!
-        let (sut, client) = makeSUT(url: url)
-        
-        sut.load {_ in }
-        
-        XCTAssertEqual(client.requestedURLs, [url])
-    }
-    
-    func test_loadTwice_requestDataFromURLTwice() {
-        let url = URL(string: "https://google.com")!
-        let (sut, client) = makeSUT(url: url)
-        
-        sut.load {_ in }
-        sut.load {_ in }
-        
-        XCTAssertEqual(client.requestedURLs, [url, url])
-    }
-    
-    func test_load_deliversErrorOnClientError() {
-        let (sut, client) = makeSUT()
-        expect(sut, toCompleteWith: failure(.connectivity)) {
-            let clientError = NSError(domain: "Test", code: 0)
-            client.completion(with: clientError)
-        }
-    }
-    
     func test_load_deliversErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
         let samplesStatusCode = [199, 201, 400, 404, 500, 501]
@@ -84,20 +49,6 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
             let data = makeItemsData([item1.json, item2.json])
             client.completion(withStatusCode: 200, data: data)
         }
-    }
-    
-    func test_load_doesNotDeliverResultAfterSUTHasBeenDellocated() {
-        let url = URL(string: "https://any-url.com")!
-        let client = HTTPClientSpy()
-        var sut: RemoteFeedLoader? = RemoteFeedLoader(url: url, client: client)
-        
-        var captureResults = [RemoteFeedLoader.Result]()
-        sut?.load { captureResults.append($0) }
-        
-        sut = nil
-        client.completion(withStatusCode: 2000, data: makeItemsData([]))
-        
-        XCTAssertTrue(captureResults.isEmpty)
     }
     
     // MARK: - Helpers
