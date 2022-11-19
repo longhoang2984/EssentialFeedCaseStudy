@@ -32,4 +32,6 @@ final class FeedLoaderPresentationAdapter: FeedViewControllerDelegate {
                 self?.presenter?.didFinishLoading(with: feed)
             })
     }
+    
+    
 }
