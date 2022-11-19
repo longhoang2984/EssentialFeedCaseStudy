@@ -37,7 +37,6 @@
 		2FB2ABF5292138CD00DADC6D /* EssentialFeed.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB2ABF2292138CD00DADC6D /* EssentialFeed.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2FB2ABF6292138CD00DADC6D /* EssentialFeediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB2ABF3292138CD00DADC6D /* EssentialFeediOS.framework */; };
 		2FB2ABF7292138CD00DADC6D /* EssentialFeediOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB2ABF3292138CD00DADC6D /* EssentialFeediOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2FB2ABFF292139BA00DADC6D /* FeedImageLoaderWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB2ABFB292139BA00DADC6D /* FeedImageLoaderWithFallbackComposite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +96,6 @@
 		2FB2ABE62921385800DADC6D /* XCTest+TrackMemoryLeak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+TrackMemoryLeak.swift"; sourceTree = "<group>"; };
 		2FB2ABF2292138CD00DADC6D /* EssentialFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FB2ABF3292138CD00DADC6D /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2FB2ABFB292139BA00DADC6D /* FeedImageLoaderWithFallbackComposite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedImageLoaderWithFallbackComposite.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +145,6 @@
 				2F4A39202924B63C00849B49 /* FeedImageDataLoaderPresentationAdapter.swift */,
 				2F4A39212924B63C00849B49 /* FeedLoaderPresentationAdapter.swift */,
 				2F4A39252924B63C00849B49 /* WeakVirtualProxy.swift */,
-				2FB2ABFB292139BA00DADC6D /* FeedImageLoaderWithFallbackComposite.swift */,
 				2FB2AB97292131F500DADC6D /* AppDelegate.swift */,
 				2FB2AB99292131F500DADC6D /* SceneDelegate.swift */,
 				2FB2AB9B292131F500DADC6D /* ViewController.swift */,
@@ -307,7 +304,6 @@
 				2FB2AB98292131F500DADC6D /* AppDelegate.swift in Sources */,
 				2F4A39532928E94B00849B49 /* CombineHelpers.swift in Sources */,
 				2FB2AB9A292131F500DADC6D /* SceneDelegate.swift in Sources */,
-				2FB2ABFF292139BA00DADC6D /* FeedImageLoaderWithFallbackComposite.swift in Sources */,
 				2F4A39282924B63C00849B49 /* FeedImageDataLoaderPresentationAdapter.swift in Sources */,
 				2F4A392A2924B63C00849B49 /* FeedViewAdapter.swift in Sources */,
 			);
