@@ -44,9 +44,9 @@ final class LoadImageCommentsFromRemoteUseCaseTests: XCTestCase {
         }
     }
     
-    func test_load_deliversErrorOnNon200HTTPResponse() {
+    func test_load_deliversErrorOnNon2xxHTTPResponse() {
         let (sut, client) = makeSUT()
-        let samplesStatusCode = [199, 201, 400, 404, 500, 501]
+        let samplesStatusCode = [199, 400, 404, 500, 501]
         samplesStatusCode.enumerated().forEach { index, code in
             expect(sut, toCompleteWith: failure(.invalidData)) {
                 let json = makeItemsData([])
@@ -55,23 +55,33 @@ final class LoadImageCommentsFromRemoteUseCaseTests: XCTestCase {
         }
     }
     
-    func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
+    func test_load_deliversErrorOn2xxHTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
-        expect(sut, toCompleteWith: failure(.invalidData)) {
-            let data = Data("Invalid JSON".utf8)
-            client.completion(withStatusCode: 200, data: data)
+        
+        let samplesStatusCode = [200, 240, 222, 299, 232]
+        
+        samplesStatusCode.enumerated().forEach { index, code in
+            expect(sut, toCompleteWith: failure(.invalidData)) {
+                let data = Data("Invalid JSON".utf8)
+                client.completion(withStatusCode: code, data: data, at: index)
+            }
         }
     }
     
-    func test_load_deliversErrorOn200HTTPResponseWithEmptyListSON() {
+    func test_load_deliversErrorOn2xxHTTPResponseWithEmptyListSON() {
         let (sut, client) = makeSUT()
-        expect(sut, toCompleteWith: .success([])) {
-            let data = makeItemsData([])
-            client.completion(withStatusCode: 200, data: data)
+        
+        let samplesStatusCode = [200, 240, 222, 299, 232]
+        
+        samplesStatusCode.enumerated().forEach { index, code in
+            expect(sut, toCompleteWith: .success([])) {
+                let data = makeItemsData([])
+                client.completion(withStatusCode: code, data: data, at: index)
+            }
         }
     }
     
-    func test_load_deliversErrorOn200HTTPResponseWithSONItems() {
+    func test_load_deliversErrorOn2xxHTTPResponseWithSONItems() {
         let (sut, client) = makeSUT()
         
         let item1 = makeItems(id: UUID(),
@@ -80,9 +90,13 @@ final class LoadImageCommentsFromRemoteUseCaseTests: XCTestCase {
                               location: "location",
                               imageUrl: URL(string: "https://images.com")!)
         
-        expect(sut, toCompleteWith: .success([item1.model, item2.model])) {
-            let data = makeItemsData([item1.json, item2.json])
-            client.completion(withStatusCode: 200, data: data)
+        let samplesStatusCode = [200, 240, 222, 299, 232]
+        
+        samplesStatusCode.enumerated().forEach { index, code in
+            expect(sut, toCompleteWith: .success([item1.model, item2.model])) {
+                let data = makeItemsData([item1.json, item2.json])
+                client.completion(withStatusCode: code, data: data, at: index)
+            }
         }
     }
     
