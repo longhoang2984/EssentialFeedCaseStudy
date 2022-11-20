@@ -24,7 +24,7 @@ final class LoadResourcePresenterTests: XCTestCase {
         XCTAssertEqual(spy.messages, [.display(error: nil), .display(isLoading: true)])
     }
     
-    func test_didFinishLoadingFeed_displaysViewMessageAndStopLoading() {
+    func test_didFinishLoadingResource_displaysViewMessageAndStopLoading() {
         let (sut, spy) = makeSUT()
         
         let error = anyNSError()
@@ -32,28 +32,37 @@ final class LoadResourcePresenterTests: XCTestCase {
         XCTAssertEqual(spy.messages, [.display(error: localized("FEED_VIEW_CONNECTION_ERROR")), .display(isLoading: false)])
     }
     
-    func test_didFinishLoadingFeed_displaysFeedAndStopLoading() {
-        let (sut, spy) = makeSUT()
+    func test_didFinishLoadingResource_displaysResourceAndStopLoading() {
+        let (sut, spy) = makeSUT(mapper: { resource in
+            resource + " view model"
+        })
         
-        let (item, _) = makeItems(id: UUID(), imageUrl: anyURL())
-        sut.didFinishLoading(with: [item])
-        XCTAssertEqual(spy.messages, [.display(feed: [item]), .display(isLoading: false)])
+        sut.didFinishLoading(with: "resource")
+        
+        XCTAssertEqual(spy.messages, [
+            .display(resourceViewModel: "resource view model"),
+                .display(isLoading: false)
+        ])
     }
     
     // MARK: - Helper
-    private func makeSUT(url: URL = URL(string: "https://google.com")!, file: StaticString = #filePath, line: UInt = #line) -> (sut: LoadResourcePresenter, spy: ViewSpy) {
+    private func makeSUT(
+        url: URL = URL(string: "https://google.com")!,
+        mapper: @escaping (String) -> (String) = { _ in "any" },
+        file: StaticString = #filePath,
+        line: UInt = #line) -> (sut: LoadResourcePresenter, spy: ViewSpy) {
         let spy = ViewSpy()
-        let sut = LoadResourcePresenter(loadingView: spy, feedView: spy, errorView: spy)
+        let sut = LoadResourcePresenter(loadingView: spy, resourceView: spy, errorView: spy, mapper: mapper)
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(spy, file: file, line: line)
         return (sut, spy)
     }
     
-    private class ViewSpy: FeedErrorView, FeedLoadingView, FeedView {
+    private class ViewSpy: FeedErrorView, FeedLoadingView, ResourceView {
         enum Message: Hashable {
             case display(error: String?)
             case display(isLoading: Bool)
-            case display(feed: [FeedImage])
+            case display(resourceViewModel: String)
         }
         
         private(set) var messages: Set<Message> = Set<Message>()
@@ -66,8 +75,8 @@ final class LoadResourcePresenterTests: XCTestCase {
             messages.insert(.display(isLoading: viewModel.isLoading))
         }
         
-        func display(_ viewModel: FeedViewModel) {
-            messages.insert(.display(feed: viewModel.feed))
+        func display(_ viewModel: String) {
+            messages.insert(.display(resourceViewModel: viewModel))
         }
     }
 
