@@ -64,10 +64,6 @@ final class ImageCommentsMapperTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    private func failure(_ error: RemoteImageCommentsLoader.Error) -> RemoteImageCommentsLoader.Result {
-        return .failure(error)
-    }
-    
     private func makeItem(id: UUID, message: String,
                            createdAt: (date: Date, ios8601String: String), username: String) -> (model: ImageComment, json: [String: Any]) {
         let item = ImageComment(id: id, message: message, createdAt: createdAt.date, username: username)
