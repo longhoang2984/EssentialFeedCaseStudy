@@ -46,11 +46,13 @@ final class LoadResourcePresenterTests: XCTestCase {
     }
     
     // MARK: - Helper
+    private typealias SUT = LoadResourcePresenter<String, ViewSpy>
+    
     private func makeSUT(
         url: URL = URL(string: "https://google.com")!,
-        mapper: @escaping (String) -> (String) = { _ in "any" },
+        mapper: @escaping SUT.Mapper = { _ in "any" },
         file: StaticString = #filePath,
-        line: UInt = #line) -> (sut: LoadResourcePresenter, spy: ViewSpy) {
+        line: UInt = #line) -> (sut: SUT, spy: ViewSpy) {
         let spy = ViewSpy()
         let sut = LoadResourcePresenter(loadingView: spy, resourceView: spy, errorView: spy, mapper: mapper)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -59,6 +61,7 @@ final class LoadResourcePresenterTests: XCTestCase {
     }
     
     private class ViewSpy: FeedErrorView, FeedLoadingView, ResourceView {
+        typealias ResourceViewModel = String
         enum Message: Hashable {
             case display(error: String?)
             case display(isLoading: Bool)
