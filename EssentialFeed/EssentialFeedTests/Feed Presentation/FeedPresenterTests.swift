@@ -10,14 +10,25 @@ import EssentialFeed
 
 final class FeedPresenterTests: XCTestCase {
 
-    func test_feed_deliversNoErrorOnLoading() {
+    func test_title_isLocalized() {
+        XCTAssertEqual(FeedPresenter.title, localized("FEED_VIEW_TITLE"))
+    }
+    
+    func test_init_doesNotSendMessagesToView() {
+        let (_, view) = makeSUT()
+        
+        XCTAssertTrue(view.messages.isEmpty, "Expected no view messages")
+    }
+    
+    func test_didStartLoadingFeed_displaysNoErrorMessageAndStartLoading() {
         let (sut, spy) = makeSUT()
         
         sut.didStartLoading()
+        
         XCTAssertEqual(spy.messages, [.display(error: nil), .display(isLoading: true)])
     }
     
-    func test_feed_deliversErrorOnLoadFeedError() {
+    func test_didFinishLoadingFeed_displaysViewMessageAndStopLoading() {
         let (sut, spy) = makeSUT()
         
         let error = anyNSError()
@@ -25,7 +36,7 @@ final class FeedPresenterTests: XCTestCase {
         XCTAssertEqual(spy.messages, [.display(error: localized("FEED_VIEW_CONNECTION_ERROR")), .display(isLoading: false)])
     }
     
-    func test_feed_deliversFeedOnFeedLoadSuccessfully() {
+    func test_didFinishLoadingFeed_displaysFeedAndStopLoading() {
         let (sut, spy) = makeSUT()
         
         let (item, _) = makeItems(id: UUID(), imageUrl: anyURL())
