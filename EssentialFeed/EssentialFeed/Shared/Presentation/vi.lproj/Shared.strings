@@ -1,0 +1,8 @@
+/* 
+  Shared.strings
+  EssentialFeed
+
+  Created by Cửu Long Hoàng on 21/11/2022.
+  
+*/
+"GENERIC_CONNECTION_ERROR" = "Không thể kết nối tới máy chủ";

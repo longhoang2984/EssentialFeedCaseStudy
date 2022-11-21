@@ -30,7 +30,7 @@ final class LoadResourcePresenterTests: XCTestCase {
         let error = anyNSError()
         sut.didFinishLoading(with: error as Error)
         XCTAssertEqual(spy.messages, [
-            .display(error: localized("GENERIC_CONNECTION_ERROR")),
+            .display(error: localized("GENERIC_CONNECTION_ERROR", tableName: "Shared")),
             .display(isLoading: false)
         ])
     }

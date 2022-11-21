@@ -11,7 +11,7 @@ import EssentialFeed
 final class FeedPresenterTests: XCTestCase {
 
     func test_title_isLocalized() {
-        XCTAssertEqual(FeedPresenter.title, localized("FEED_VIEW_TITLE"))
+        XCTAssertEqual(FeedPresenter.title, localized("FEED_VIEW_TITLE", tableName: "Feed"))
     }
     
     func test_init_doesNotSendMessagesToView() {
@@ -26,14 +26,6 @@ final class FeedPresenterTests: XCTestCase {
         sut.didStartLoading()
         
         XCTAssertEqual(spy.messages, [.display(error: nil), .display(isLoading: true)])
-    }
-    
-    func test_didFinishLoadingFeed_displaysViewMessageAndStopLoading() {
-        let (sut, spy) = makeSUT()
-        
-        let error = anyNSError()
-        sut.didFinishLoading(with: error as Error)
-        XCTAssertEqual(spy.messages, [.display(error: localized("GENERIC_CONNECTION_ERROR")), .display(isLoading: false)])
     }
     
     func test_didFinishLoadingFeed_displaysFeedAndStopLoading() {
