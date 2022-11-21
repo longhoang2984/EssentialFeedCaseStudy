@@ -25,7 +25,11 @@ public final class LoadResourcePresenter<Resource, View: ResourceView> {
         return NSLocalizedString("GENERIC_CONNECTION_ERROR", tableName: "Shared", bundle: Bundle(for: LoadResourcePresenter<Resource, View>.self), comment: "load error message")
     }
     
-    public init(loadingView: ResourceLoadingView, resourceView: View, errorView: ResourceErrorView, mapper: @escaping Mapper) {
+    public init(
+        resourceView: View,
+        loadingView: ResourceLoadingView,
+        errorView: ResourceErrorView,
+        mapper: @escaping Mapper) {
         self.loadingView = loadingView
         self.resourceView = resourceView
         self.errorView = errorView
