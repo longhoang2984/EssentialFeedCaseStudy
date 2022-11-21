@@ -9,14 +9,10 @@ public protocol FeedView {
     func display(_ viewModel: FeedViewModel)
 }
 
-public protocol FeedErrorView {
-    func display(_ viewModel: FeedErrorViewModel)
-}
-
 public final class FeedPresenter {
     let loadingView: ResourceLoadingView
     let feedView: FeedView
-    let errorView: FeedErrorView
+    let errorView: ResourceErrorView
     
     static public var title: String {
         return NSLocalizedString("FEED_VIEW_TITLE", tableName: "Feed", bundle: Bundle(for: FeedPresenter.self), comment: "Feed title view")
@@ -26,7 +22,7 @@ public final class FeedPresenter {
         return NSLocalizedString("GENERIC_CONNECTION_ERROR", tableName: "Shared", bundle: Bundle(for: FeedPresenter.self), comment: "Feed load error")
     }
     
-    public init(loadingView: ResourceLoadingView, feedView: FeedView, errorView: FeedErrorView) {
+    public init(loadingView: ResourceLoadingView, feedView: FeedView, errorView: ResourceErrorView) {
         self.loadingView = loadingView
         self.feedView = feedView
         self.errorView = errorView
