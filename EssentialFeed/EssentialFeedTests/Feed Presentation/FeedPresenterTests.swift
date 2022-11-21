@@ -33,7 +33,7 @@ final class FeedPresenterTests: XCTestCase {
         
         let error = anyNSError()
         sut.didFinishLoading(with: error as Error)
-        XCTAssertEqual(spy.messages, [.display(error: localized("FEED_VIEW_CONNECTION_ERROR")), .display(isLoading: false)])
+        XCTAssertEqual(spy.messages, [.display(error: localized("GENERIC_CONNECTION_ERROR")), .display(isLoading: false)])
     }
     
     func test_didFinishLoadingFeed_displaysFeedAndStopLoading() {

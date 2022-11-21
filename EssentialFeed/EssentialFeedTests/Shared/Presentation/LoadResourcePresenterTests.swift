@@ -9,7 +9,7 @@ import XCTest
 import EssentialFeed
 
 final class LoadResourcePresenterTests: XCTestCase {
-
+    
     func test_init_doesNotSendMessagesToView() {
         let (_, view) = makeSUT()
         
@@ -29,7 +29,10 @@ final class LoadResourcePresenterTests: XCTestCase {
         
         let error = anyNSError()
         sut.didFinishLoading(with: error as Error)
-        XCTAssertEqual(spy.messages, [.display(error: localized("FEED_VIEW_CONNECTION_ERROR")), .display(isLoading: false)])
+        XCTAssertEqual(spy.messages, [
+            .display(error: localized("GENERIC_CONNECTION_ERROR")),
+            .display(isLoading: false)
+        ])
     }
     
     func test_didFinishLoadingResource_displaysResourceAndStopLoading() {
@@ -41,7 +44,7 @@ final class LoadResourcePresenterTests: XCTestCase {
         
         XCTAssertEqual(spy.messages, [
             .display(resourceViewModel: "resource view model"),
-                .display(isLoading: false)
+            .display(isLoading: false)
         ])
     }
     
@@ -53,12 +56,12 @@ final class LoadResourcePresenterTests: XCTestCase {
         mapper: @escaping SUT.Mapper = { _ in "any" },
         file: StaticString = #filePath,
         line: UInt = #line) -> (sut: SUT, spy: ViewSpy) {
-        let spy = ViewSpy()
-        let sut = LoadResourcePresenter(loadingView: spy, resourceView: spy, errorView: spy, mapper: mapper)
-        trackForMemoryLeaks(sut, file: file, line: line)
-        trackForMemoryLeaks(spy, file: file, line: line)
-        return (sut, spy)
-    }
+            let spy = ViewSpy()
+            let sut = LoadResourcePresenter(loadingView: spy, resourceView: spy, errorView: spy, mapper: mapper)
+            trackForMemoryLeaks(sut, file: file, line: line)
+            trackForMemoryLeaks(spy, file: file, line: line)
+            return (sut, spy)
+        }
     
     private class ViewSpy: FeedErrorView, FeedLoadingView, ResourceView {
         typealias ResourceViewModel = String
@@ -82,5 +85,5 @@ final class LoadResourcePresenterTests: XCTestCase {
             messages.insert(.display(resourceViewModel: viewModel))
         }
     }
-
+    
 }
