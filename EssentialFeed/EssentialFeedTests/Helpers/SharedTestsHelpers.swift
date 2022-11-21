@@ -45,3 +45,7 @@ extension HTTPURLResponse {
         self.init(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
     }
 }
+
+class DummyView: ResourceView {
+    func display(_ viewModel: Any) {}
+}
